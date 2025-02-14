@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="about/about.xsl"?>
+<about>
+    <version>1.0</version>
+    <date>12.02.2025</date>
+    <authors>
+   
+        <author>Carla Maria Peña Almanzar,</author> 
+        <author>Oleg Fink, </author>
+        <author>Shaban Sadiki, </author>
+        <author>Timo Reinschmidt, </author>
+     </authors>
+</about>

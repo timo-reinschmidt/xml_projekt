@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="energie-data">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="energie-plant"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="energie-plant">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="plant" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="plant">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element ref="statistics"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="statistics">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="price" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="price">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="pricePerKWh">
+                    <xs:attribute name="date" type="xs:date"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="pricePerKWh">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="2"/>
+            <xs:maxInclusive value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

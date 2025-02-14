@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="public/public.xsl"?>
+<menu>
+    <item>
+        <text>Feature 2: data-driven SVG</text>
+        <link>feature-02.xml</link>
+        <index>0</index>
+    </item>
+</menu>

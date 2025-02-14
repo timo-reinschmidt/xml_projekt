@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="login-data">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="login"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="login">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="userName" maxOccurs="1"/>
+                <xs:element ref="password" maxOccurs="1"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="userName">
+        <xs:restriciton base="xs:string">
+            <xs:maxLength value="30"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+        <xs:simpleType name="password">
+        <xs:restriciton base="xs:string">
+            <xs:minInclusive value="0"/>
+            <xs:MaxInclusive value="unbounded"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+</xs:schema>

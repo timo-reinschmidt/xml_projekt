@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="welcome/welcome.xsl"?>
+
+<menu>
+      <item>
+        <text>public</text>
+        <link>public.xml</link>
+        <index>1</index>
+    </item>
+  
+    <item>
+        <text>About</text>
+        <link>about.xml</link>
+        <index>7</index>
+    </item>
+</menu>
+
+
+

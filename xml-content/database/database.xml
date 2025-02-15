@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<energie-data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="database.xsd">
-    <energie-plant>
+<energy-data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="database.xsd">
+    <energy-plant>
         <plant>
             <name>Aarau</name>
             <statistics>
@@ -9,7 +9,11 @@
                 <price date="2022-03-20">11.50</price>
                 <price date="2022-11-09">13.00</price>
                 <price date="2023-01-01">8.20</price>
-            <price date="2025-02-12">2</price></statistics>
+                <price date="2025-02-12">2</price>
+                <price date="2025-02-15">10</price>
+                <price date="2025-02-16">20</price>
+                <price date="2025-02-17">2</price>
+            <price date="2025-02-18">3</price></statistics>
         </plant>
         <plant>
             <name>Luzern</name>
@@ -19,7 +23,7 @@
                 <price date="2022-03-20">15.50</price>
                 <price date="2022-11-09">12.00</price>
                 <price date="2023-01-01">5.20</price>
-            </statistics>
+            <price date="2025-02-15">10</price></statistics>
         </plant>
         <plant>
             <name>Bern</name>
@@ -51,5 +55,25 @@
                 <price date="2023-01-01">8.20</price>
             </statistics>
         </plant>
-    </energie-plant>
-</energie-data>
+    </energy-plant>
+
+    <provider-data>
+        <provider id="p1">
+            <name>StromPower AG</name>
+            <base-fee>50</base-fee>
+            <tariff>
+                <threshold>200</threshold>
+                <pricePerKW>4</pricePerKW>
+            </tariff>
+        </provider>
+        <provider id="p2">
+            <name>KW Direkt GmbH</name>
+            <base-fee>0</base-fee>
+            <tariff>
+                <threshold>0</threshold>
+                <pricePerKW>8</pricePerKW>
+            </tariff>
+        </provider>
+    <provider id="p1723"><name>Energie4Us</name><base-fee>15</base-fee><tariff><threshold>50</threshold><pricePerKW>15</pricePerKW></tariff></provider></provider-data>
+
+</energy-data>

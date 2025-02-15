@@ -1,14 +1,15 @@
 <?xml version="1.0" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="energie-data">
+    <xs:element name="energy-data">
         <xs:complexType>
-            <xs:all>
-                <xs:element ref="energie-plant"/>
-            </xs:all>
+            <xs:sequence>
+                <xs:element ref="energy-plant"/>
+                <xs:element ref="provider-data"/>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="energie-plant">
+    <xs:element name="energy-plant">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="plant" maxOccurs="unbounded"/>
@@ -49,5 +50,31 @@
             <xs:maxInclusive value="20"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:element name="provider-data">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="provider" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="provider">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="base-fee" type="xs:decimal"/>
+                <xs:element name="tariff">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="threshold" type="xs:decimal"/>
+                            <xs:element name="pricePerKW" type="pricePerKWh"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
 
 </xs:schema>

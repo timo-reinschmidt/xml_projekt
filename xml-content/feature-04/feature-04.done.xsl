@@ -18,7 +18,7 @@
 
                 <h1>Feature #04</h1>
                 <small>
-                    <a href="index.xml">Home</a>
+                    <a href="../feature-04.xml">Zurück</a>
                 </small>
 
                 <div class="content">
@@ -31,7 +31,7 @@
 
                         <ul>
                             <xsl:apply-templates
-                                    select="document('../database/database.xml')/school-register/statistics"
+                                    select="document('../database/database.xml')/energy-data/provider-data/provider"
                             >
                             </xsl:apply-templates>
                         </ul>

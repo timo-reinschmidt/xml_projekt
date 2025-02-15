@@ -48,9 +48,10 @@ app.post('/updateData', (req, res) => {
     }
 
     // write new database.xml
-    fs.writeFileSync(databasePath, xmlDocDatabase.toString(), 'utf-8')
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true).replace(/></g, '>\n<'), 'utf-8')
 
     res.sendStatus(200)
+    res.redirect('/feature-04.done.xsl')
 })
 
 app.post('/checkLogin', (req, res) => {
@@ -93,8 +94,85 @@ app.post('/checkLogin', (req, res) => {
     }
 })
 
-function validateDatabase(xmlDocDatabase,nameOfDB) {
-    const databaseXsd = fs.readFileSync(path.resolve('xml-content', nameOfDB, nameOfDB + '.xsd'), 'utf-8')
+app.post('/addProvider', (req, res) => {
+    const { "provider-name": providerName, "base-fee": baseFee, threshold, pricePerKW } = req.body;
+
+    if (!providerName || !baseFee || !threshold || !pricePerKW) {
+        return res.status(400).send("All fields are required.");
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    // Get the provider-data node
+    const providerData = xmlDocDatabase.get("//provider-data");
+    if (!providerData) {
+        return res.status(500).send("Error: provider-data section not found in database.xml.");
+    }
+
+    // Create new provider node
+    const newProvider = new libxmljs.Element(xmlDocDatabase, "provider");
+    newProvider.attr({ id: "p" + Math.floor(Math.random() * 10000) });
+
+    newProvider.node("name", providerName);
+    newProvider.node("base-fee", baseFee);
+
+    const tariff = newProvider.node("tariff");
+    tariff.node("threshold", threshold);
+    tariff.node("pricePerKW", pricePerKW);
+
+    // Append new provider to provider-data
+    providerData.addChild(newProvider);
+
+    // Validate the updated XML
+    if (!validateDatabase(xmlDocDatabase)) {
+        return res.status(400).send("Invalid XML format.");
+    }
+
+    // Save updated database.xml
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), "utf-8");
+
+    res.redirect("/feature-04/feature-04.done.xsl");
+});
+
+app.post('/updateProviderPrice', (req, res) => {
+    const { provider, pricePerKW } = req.body;
+
+    if (!provider || !pricePerKW) {
+        return res.status(400).send("Missing provider name or price.");
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    // Find the provider by name
+    const providerNode = xmlDocDatabase.get(`//provider[name="${provider}"]/tariff/pricePerKW`);
+
+    if (!providerNode) {
+        return res.status(404).send("Provider not found.");
+    }
+
+    // Update pricePerKW
+    providerNode.text(pricePerKW);
+
+    console.log(xmlDocDatabase.toString());
+
+    // Validate the updated XML
+    const valid = validateDatabase(xmlDocDatabase);
+    if (!valid) {
+        return res.status(400).send('Invalid XML format');
+    }
+
+    // Save the updated database.xml
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
+
+    res.redirect('/feature-04/feature-04.done.xsl');
+});
+
+function validateDatabase(xmlDocDatabase) {
+    const databaseXsd = fs.readFileSync(path.resolve('xml-content', 'database', 'database.xsd'), 'utf-8')
     const xmlDocDatabaseXsd = libxmljs.parseXml(databaseXsd)
     return xmlDocDatabase.validate(xmlDocDatabaseXsd)
 }

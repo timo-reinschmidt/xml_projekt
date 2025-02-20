@@ -13,14 +13,16 @@
                 <price date="2025-02-15">10</price>
                 <price date="2025-02-16">20</price>
                 <price date="2025-02-17">2</price>
-            <price date="2025-02-18">3</price>
-<price date="2025-02-20">19</price>
-</statistics>
+                <price date="2025-02-18">3</price>
+                <price date="2025-02-20">19</price>
+            </statistics>
             <providers>
                 <provider>p1</provider>
                 <provider>p2</provider>
                 <provider>p3</provider>
-    </providers>
+                <provider>p5375</provider>
+                <provider>p5453</provider>
+            </providers>
         </plant>
         <plant>
             <name>Luzern</name>
@@ -30,13 +32,14 @@
                 <price date="2022-03-20">15.50</price>
                 <price date="2022-11-09">12.00</price>
                 <price date="2023-01-01">5.20</price>
-            <price date="2025-02-15">10</price>
-</statistics>
+            </statistics>
             <providers>
                 <provider>p1</provider>
                 <provider>p2</provider>
                 <provider>p3</provider>
-    </providers>
+                <provider>p5375</provider>
+                <provider>p5453</provider>
+        </providers>
         </plant>
         <plant>
             <name>Bern</name>
@@ -46,13 +49,15 @@
                 <price date="2022-03-20">12.50</price>
                 <price date="2022-11-09">12.00</price>
                 <price date="2023-01-01">9.20</price>
-            <price date="2025-02-19">11.11</price>
-<price date="2025-02-20">12.50</price>
-</statistics>
+                <price date="2025-02-19">11.11</price>
+                <price date="2025-02-20">12.50</price>
+            </statistics>
             <providers>
                 <provider>p1</provider>
                 <provider>p2</provider>
                 <provider>p3</provider>
+                <provider>p5375</provider>
+                <provider>p5453</provider>
             </providers>
         </plant>
         <plant>
@@ -68,6 +73,8 @@
                 <provider>p1</provider>
                 <provider>p2</provider>
                 <provider>p3</provider>
+                <provider>p5375</provider>
+                <provider>p5453</provider>
             </providers>
         </plant>
         <plant>
@@ -78,12 +85,15 @@
                 <price date="2022-03-20">11.50</price>
                 <price date="2022-11-09">13.00</price>
                 <price date="2023-01-01">8.20</price>
-            <price date="2025-02-20">5</price>
-</statistics>
+                <price date="2025-02-20">5</price>
+                <price date="2025-02-21">7</price>
+            </statistics>
             <providers>
                 <provider>p1</provider>
                 <provider>p2</provider>
                 <provider>p3</provider>
+                <provider>p5375</provider>
+                <provider>p5453</provider>
             </providers>
         </plant>
     </energy-plant>
@@ -92,7 +102,7 @@
         <provider id="p1">
             <name>StromPower AG</name>
             <base-fee>50</base-fee>
-            <factor>5</factor>
+            <factor>2</factor>
             <tariff>
                 <threshold>200</threshold>
             </tariff>
@@ -113,6 +123,21 @@
                 <threshold>50</threshold>
             </tariff>
         </provider>
-    <provider id="p8870"><name>FreeStrom4All</name><base-fee>100</base-fee><factor>2</factor><tariff><threshold>250</threshold><pricePerKW>0</pricePerKW></tariff></provider></provider-data>
-
+        <provider id="p5375">
+            <name>FreeStrom4All</name>
+            <base-fee>100</base-fee>
+            <factor>1.4</factor>
+            <tariff>
+                <threshold>200</threshold>
+            </tariff>
+        </provider>
+        <provider id="p5453">
+            <name>Strom 'r' Us</name>
+            <base-fee>40</base-fee>
+            <factor>1.1</factor>
+            <tariff>
+                <threshold>100</threshold>
+            </tariff>
+        </provider>
+    </provider-data>
 </energy-data>

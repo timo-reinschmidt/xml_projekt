@@ -94,10 +94,60 @@ app.post('/checkLogin', (req, res) => {
     }
 })
 
-app.post('/addProvider', (req, res) => {
-    const { "provider-name": providerName, "base-fee": baseFee, threshold, pricePerKW } = req.body;
+app.post('/updateProviderFactor', (req, res) => {
+    const { provider, factor } = req.body;
 
-    if (!providerName || !baseFee || !threshold || !pricePerKW) {
+    if (!provider || !factor) {
+        console.log("Fehler: Fehlender Anbietername oder Faktor.");
+        return res.status(400).send("Missing provider name or factor.");
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    console.log("🚀 DEBUGGING: Gesuchter Provider:", provider);
+
+    // Prüfe, ob die Provider-Names korrekt geladen wurden
+    const providerNodes = xmlDocDatabase.find("/energy-data/provider-data/provider");
+    console.log("📋 Gefundene Provider in XML:", providerNodes.map(node => node.get("name").text()));
+
+    // Provider anhand des Namens suchen
+    const providerNode = xmlDocDatabase.get(`//provider[name='${provider}']`);
+
+    if (!providerNode) {
+        console.log("❌ FEHLER: Provider wurde nicht gefunden!");
+        return res.status(404).send("Provider not found.");
+    }
+
+    console.log("✅ Provider gefunden:", providerNode.get("name").text());
+
+    const factorNode = providerNode.get("factor");
+    if (!factorNode) {
+        console.log("❌ FEHLER: Faktor-Knoten nicht gefunden!");
+        return res.status(404).send("Factor node not found.");
+    }
+
+    console.log(`🛠️ Alter Faktor: ${factorNode.text()}, Neuer Faktor: ${factor}`);
+    factorNode.text(factor);
+
+    // Validierung der XML-Datei
+    const valid = validateDatabase(xmlDocDatabase);
+    if (!valid) {
+        console.log("❌ FEHLER: XML-Validierung fehlgeschlagen!");
+        return res.status(400).send('Invalid XML format');
+    }
+
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
+
+    console.log("✅ Faktor erfolgreich aktualisiert!");
+    res.redirect('/feature-04/feature-04.done.xsl');
+});
+
+app.post('/addProvider', (req, res) => {
+    const { "provider-name": providerName, "base-fee": baseFee, threshold, factor } = req.body;
+
+    if (!providerName || !baseFee || !threshold || !factor) {
         return res.status(400).send("All fields are required.");
     }
 
@@ -105,70 +155,39 @@ app.post('/addProvider', (req, res) => {
     const databaseXml = fs.readFileSync(databasePath, 'utf-8');
     const xmlDocDatabase = libxmljs.parseXml(databaseXml);
 
-    // Get the provider-data node
-    const providerData = xmlDocDatabase.get("//provider-data");
-    if (!providerData) {
-        return res.status(500).send("Error: provider-data section not found in database.xml.");
-    }
+    // ✅ Eindeutige Provider-ID generieren
+    const providerID = "p" + Math.floor(Math.random() * 10000);
 
-    // Create new provider node
+    // ✅ `provider-data`-Node holen
+    const providerData = xmlDocDatabase.get("//provider-data");
+
+    // ✅ Neuen Anbieter als Node erstellen
     const newProvider = new libxmljs.Element(xmlDocDatabase, "provider");
-    newProvider.attr({ id: "p" + Math.floor(Math.random() * 10000) });
+    newProvider.attr({ id: providerID });
 
     newProvider.node("name", providerName);
     newProvider.node("base-fee", baseFee);
+    newProvider.node("factor", factor);
 
     const tariff = newProvider.node("tariff");
     tariff.node("threshold", threshold);
-    tariff.node("pricePerKW", pricePerKW);
 
-    // Append new provider to provider-data
+    // ✅ Anbieter zu `provider-data` hinzufügen
     providerData.addChild(newProvider);
 
-    // Validate the updated XML
-    if (!validateDatabase(xmlDocDatabase)) {
-        return res.status(400).send("Invalid XML format.");
-    }
+    // ✅ **Den neuen Anbieter in alle `plants/providers` einfügen**
+    const plants = xmlDocDatabase.find("//plant");
+    plants.forEach(plant => {
+        const providersNode = plant.get("providers");
+        if (providersNode && !providersNode.find(`provider[text()="${providerID}"]`)) {
+            providersNode.node("provider", providerID);
+        }
+    });
 
-    // Save updated database.xml
+    // ✅ `database.xml` aktualisieren
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), "utf-8");
 
     res.redirect("/feature-04/feature-04.done.xsl");
-});
-
-app.post('/updateProviderPrice', (req, res) => {
-    const { provider, pricePerKW } = req.body;
-
-    if (!provider || !pricePerKW) {
-        return res.status(400).send("Missing provider name or price.");
-    }
-
-    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
-    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
-    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
-
-    // Find the provider by name
-    const providerNode = xmlDocDatabase.get(`//provider[name="${provider}"]/tariff/pricePerKW`);
-
-    if (!providerNode) {
-        return res.status(404).send("Provider not found.");
-    }
-
-    // Update pricePerKW
-    providerNode.text(pricePerKW);
-
-    console.log(xmlDocDatabase.toString());
-
-    // Validate the updated XML
-    const valid = validateDatabase(xmlDocDatabase);
-    if (!valid) {
-        return res.status(400).send('Invalid XML format');
-    }
-
-    // Save the updated database.xml
-    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
-
-    res.redirect('/feature-04/feature-04.done.xsl');
 });
 
 function validateDatabase(xmlDocDatabase) {

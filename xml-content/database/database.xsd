@@ -7,6 +7,12 @@
                 <xs:element ref="provider-data"/>
             </xs:sequence>
         </xs:complexType>
+
+        <!-- Key für Provider-IDs -->
+        <xs:key name="providerKey">
+            <xs:selector xpath="provider-data/provider"/>
+            <xs:field xpath="@id"/>
+        </xs:key>
     </xs:element>
 
     <xs:element name="energy-plant">
@@ -22,8 +28,22 @@
             <xs:sequence>
                 <xs:element name="name" type="xs:string"/>
                 <xs:element ref="statistics"/>
+                <xs:element ref="providers"/>
             </xs:sequence>
         </xs:complexType>
+    </xs:element>
+
+    <xs:element name="providers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="provider" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:keyref name="providerRef" refer="providerKey">
+            <xs:selector xpath="providers/provider"/>
+            <xs:field xpath="."/>
+        </xs:keyref>
     </xs:element>
 
     <xs:element name="statistics">
@@ -64,11 +84,11 @@
             <xs:sequence>
                 <xs:element name="name" type="xs:string"/>
                 <xs:element name="base-fee" type="xs:decimal"/>
+                <xs:element name="factor" type="xs:decimal"/>
                 <xs:element name="tariff">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="threshold" type="xs:decimal"/>
-                            <xs:element name="pricePerKW" type="pricePerKWh"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="energie-data">
+    <xs:element name="energy-data">
         <xs:complexType>
-            <xs:all>
-                <xs:element ref="energie-plant"/>
-            </xs:all>
+            <xs:sequence>
+                <xs:element ref="energy-plant"/>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="energie-plant">
+    <xs:element name="energy-plant">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="plant" maxOccurs="unbounded"/>
@@ -21,6 +21,31 @@
             <xs:sequence>
                 <xs:element name="name" type="xs:string"/>
                 <xs:element ref="statistics"/>
+                <xs:element ref="providers"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="providers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="provider" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string"/>
+                            <xs:element name="base-fee" type="xs:decimal"/>
+                            <xs:element name="factor" type="xs:decimal"/>
+                            <xs:element name="tariff">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="threshold" type="xs:decimal"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="calculated-price" type="xs:decimal"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -49,5 +74,4 @@
             <xs:maxInclusive value="20"/>
         </xs:restriction>
     </xs:simpleType>
-
 </xs:schema>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<energie-data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="database.xsd">
-    <energie-plant>
+<energy-data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="database.xsd">
+    <energy-plant>
         <plant>
             <name>Aarau</name>
             <statistics>
@@ -9,7 +9,48 @@
                 <price date="2022-03-20">11.50</price>
                 <price date="2022-11-09">13.00</price>
                 <price date="2023-01-01">8.20</price>
-            <price date="2025-02-12">2</price></statistics>
+                <price date="2025-02-12">2</price>
+                <price date="2025-02-15">10</price>
+                <price date="2025-02-16">20</price>
+                <price date="2025-02-17">2</price>
+                <price date="2025-02-18">3</price>
+                <price date="2025-02-20">19</price>
+            </statistics>
+            <providers>
+                <provider>
+                    <name>StromPower AG</name>
+                    <base-fee>50</base-fee>
+                    <factor>5</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>95.00</calculated-price></provider>
+                <provider>
+                    <name>KW Direkt GmbH</name>
+                    <base-fee>0</base-fee>
+                    <factor>0.5</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff>
+                <calculated-price>9.50</calculated-price></provider>
+                <provider>
+                    <name>Energie4Us</name>
+                    <base-fee>15</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>50</threshold>
+                    </tariff>
+                <calculated-price>57.00</calculated-price></provider>
+                <provider>
+                    <name>FreeStrom4All</name>
+                    <base-fee>100</base-fee>
+                    <factor>1.4</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>26.60</calculated-price></provider>
+
+            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>57.00</calculated-price></provider></providers>
         </plant>
         <plant>
             <name>Luzern</name>
@@ -20,6 +61,48 @@
                 <price date="2022-11-09">12.00</price>
                 <price date="2023-01-01">5.20</price>
             </statistics>
+            <providers>
+                <provider>
+                    <name>StromPower AG</name>
+                    <base-fee>50</base-fee>
+                    <factor>5</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>26.00</calculated-price></provider>
+                <provider>
+                    <name>KW Direkt GmbH</name>
+                    <base-fee>0</base-fee>
+                    <factor>0.5</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff>
+                <calculated-price>2.60</calculated-price></provider>
+                <provider>
+                    <name>Energie4Us</name>
+                    <base-fee>15</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>50</threshold>
+                    </tariff>
+                <calculated-price>15.60</calculated-price></provider>
+                <provider>
+                    <name>FreeStrom4All</name>
+                    <base-fee>100</base-fee>
+                    <factor>1.4</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>7.28</calculated-price></provider>
+                <provider>
+                    <name>Strom 'r' Us</name>
+                    <base-fee>40</base-fee>
+                    <factor>1.1</factor>
+                    <tariff>
+                        <threshold>100</threshold>
+                    </tariff>
+                <calculated-price>5.72</calculated-price></provider>
+        <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>15.60</calculated-price></provider></providers>
         </plant>
         <plant>
             <name>Bern</name>
@@ -29,7 +112,51 @@
                 <price date="2022-03-20">12.50</price>
                 <price date="2022-11-09">12.00</price>
                 <price date="2023-01-01">9.20</price>
+                <price date="2025-02-19">11.11</price>
+                <price date="2025-02-20">12.50</price>
             </statistics>
+            <providers>
+                <provider>
+                    <name>StromPower AG</name>
+                    <base-fee>50</base-fee>
+                    <factor>5</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>62.50</calculated-price></provider>
+                <provider>
+                    <name>KW Direkt GmbH</name>
+                    <base-fee>0</base-fee>
+                    <factor>0.5</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff>
+                <calculated-price>6.25</calculated-price></provider>
+                <provider>
+                    <name>Energie4Us</name>
+                    <base-fee>15</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>50</threshold>
+                    </tariff>
+                <calculated-price>37.50</calculated-price></provider>
+                <provider>
+                    <name>FreeStrom4All</name>
+                    <base-fee>100</base-fee>
+                    <factor>1.4</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>17.50</calculated-price></provider>
+                <provider>
+                    <name>Strom 'r' Us</name>
+                    <base-fee>40</base-fee>
+                    <factor>1.1</factor>
+                    <tariff>
+                        <threshold>100</threshold>
+                    </tariff>
+                <calculated-price>13.75</calculated-price></provider>
+            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>37.50</calculated-price></provider></providers>
         </plant>
         <plant>
             <name>Zürich</name>
@@ -39,7 +166,49 @@
                 <price date="2022-03-20">11.50</price>
                 <price date="2022-11-09">13.00</price>
                 <price date="2023-01-01">8.20</price>
-            </statistics>
+            <price date="2025-02-23">4.5</price></statistics>
+            <providers>
+                <provider>
+                    <name>StromPower AG</name>
+                    <base-fee>50</base-fee>
+                    <factor>5</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>22.50</calculated-price></provider>
+                <provider>
+                    <name>KW Direkt GmbH</name>
+                    <base-fee>0</base-fee>
+                    <factor>0.5</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff>
+                <calculated-price>2.25</calculated-price></provider>
+                <provider>
+                    <name>Energie4Us</name>
+                    <base-fee>15</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>50</threshold>
+                    </tariff>
+                <calculated-price>13.50</calculated-price></provider>
+                <provider>
+                    <name>FreeStrom4All</name>
+                    <base-fee>100</base-fee>
+                    <factor>1.4</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>6.30</calculated-price></provider>
+                <provider>
+                    <name>Strom 'r' Us</name>
+                    <base-fee>40</base-fee>
+                    <factor>1.1</factor>
+                    <tariff>
+                        <threshold>100</threshold>
+                    </tariff>
+                <calculated-price>4.95</calculated-price></provider>
+            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>13.50</calculated-price></provider></providers>
         </plant>
         <plant>
             <name>Genf</name>
@@ -49,7 +218,51 @@
                 <price date="2022-03-20">11.50</price>
                 <price date="2022-11-09">13.00</price>
                 <price date="2023-01-01">8.20</price>
-            </statistics>
+                <price date="2025-02-20">5</price>
+                <price date="2025-02-21">7</price>
+            <price date="2025-02-23">11</price></statistics>
+            <providers>
+                <provider>
+                    <name>StromPower AG</name>
+                    <base-fee>50</base-fee>
+                    <factor>5</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>55.00</calculated-price></provider>
+                <provider>
+                    <name>KW Direkt GmbH</name>
+                    <base-fee>0</base-fee>
+                    <factor>0.5</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff>
+                <calculated-price>5.50</calculated-price></provider>
+                <provider>
+                    <name>Energie4Us</name>
+                    <base-fee>15</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>50</threshold>
+                    </tariff>
+                <calculated-price>33.00</calculated-price></provider>
+                <provider>
+                    <name>FreeStrom4All</name>
+                    <base-fee>100</base-fee>
+                    <factor>1.4</factor>
+                    <tariff>
+                        <threshold>200</threshold>
+                    </tariff>
+                <calculated-price>15.40</calculated-price></provider>
+                <provider>
+                    <name>Strom 'r' Us</name>
+                    <base-fee>40</base-fee>
+                    <factor>1.1</factor>
+                    <tariff>
+                        <threshold>100</threshold>
+                    </tariff>
+                <calculated-price>12.10</calculated-price></provider>
+            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>8</factor><tariff><threshold>0</threshold></tariff><calculated-price>88.00</calculated-price></provider></providers>
         </plant>
-    </energie-plant>
-</energie-data>
+    </energy-plant>
+</energy-data>

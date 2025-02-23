@@ -26,33 +26,6 @@ app.post('/convertToPdf', async (req, res) => {
     res.sendFile(path.resolve('temp.pdf'))
 })
 
-app.post('/updateData', (req, res) => {
-    const dataToUpdate = req.body
-    // read database xml
-    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
-    const databaseXml = fs.readFileSync(databasePath, 'utf-8')
-    const xmlDocDatabase = libxmljs.parseXml(databaseXml)
-    // select node to update
-    const plantStatistics = xmlDocDatabase.get(`//plant[name="${dataToUpdate.plant}"]/statistics`);
-
-    // create new node with attribute etc.
-    plantStatistics.node('price', dataToUpdate.price).attr('date', dataToUpdate.date)
-
-    console.log(xmlDocDatabase.toString())
-
-    // validate new database against schema
-    const valid = validateDatabase(xmlDocDatabase)
-    if (!valid) {
-        res.status(400).send('Invalid XML')
-        return
-    }
-
-    // write new database.xml
-    fs.writeFileSync(databasePath, xmlDocDatabase.toString(), 'utf-8')
-
-    res.sendStatus(200)
-})
-
 app.post('/checkLogin', (req, res) => {
     // save the inputs of the user from the POST req body
     let inputUserName = req.body.username;
@@ -93,8 +66,176 @@ app.post('/checkLogin', (req, res) => {
     }
 })
 
-function validateDatabase(xmlDocDatabase,nameOfDB) {
-    const databaseXsd = fs.readFileSync(path.resolve('xml-content', nameOfDB, nameOfDB + '.xsd'), 'utf-8')
+app.post('/updateData', (req, res) => {
+    const { plant, date, price } = req.body;
+
+    if (!plant || !date || !price) {
+        return res.status(400).send('Missing plant, date, or price.');
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    const plantNode = xmlDocDatabase.get(`//plant[name[text()='${plant}']]`);
+    if (!plantNode) {
+        return res.status(404).send("Plant not found.");
+    }
+
+    // Neuen Preis zur Plant hinzufügen
+    const statisticsNode = plantNode.get("statistics");
+    statisticsNode.node("price", price).attr("date", date);
+
+    // Berechne `calculated-price` für alle Provider dieser Plant neu
+    updateCalculatedPrice(xmlDocDatabase);
+
+    // validate new database against schema
+    const valid = validateDatabase(xmlDocDatabase)
+    if (!valid) {
+        res.status(400).send('Invalid XML')
+        return
+    }
+
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
+
+    res.sendStatus(200);
+});
+
+app.post('/updateProviderFactor', (req, res) => {
+    const { plant, provider, factor } = req.body;
+
+    if (!plant || !provider || !factor) {
+        return res.status(400).send("Missing plant, provider, or factor.");
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    const plantNode = xmlDocDatabase.get(`//plant[name='${plant}']`);
+    if (!plantNode) {
+        return res.status(404).send("Plant not found.");
+    }
+
+    // Suche den Provider anhand des Namens
+    const providerNodes = plantNode.find("providers/provider");
+    const providerNode = providerNodes.find(node => node.get("name").text() === provider);
+
+    if (!providerNode) {
+        return res.status(404).send("Provider not found in selected plant.");
+    }
+
+    // Faktor aktualisieren
+    providerNode.get("factor").text(factor);
+
+    // `calculated-price` aktualisieren
+    updateCalculatedPrice(xmlDocDatabase);
+
+    // validate database against schema
+    const valid = validateDatabase(xmlDocDatabase)
+    if (!valid) {
+        res.status(400).send('Invalid XML')
+        return
+    }
+
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
+
+    res.redirect('/feature-04/feature-04.done.xsl');
+});
+
+function updateCalculatedPrice(xmlDocDatabase) {
+    const plants = xmlDocDatabase.find("//plant");
+
+    plants.forEach(plant => {
+        const latestPriceNode = plant.get("statistics/price[last()]");
+        const latestPrice = latestPriceNode ? parseFloat(latestPriceNode.text()) : 0;
+
+        const providers = plant.find("providers/provider");
+        providers.forEach(provider => {
+            const factorNode = provider.get("factor");
+            if (!factorNode) return;
+
+            const factor = parseFloat(factorNode.text());
+            const calculatedPrice = (latestPrice * factor).toFixed(2);
+
+            let priceNode = provider.get("calculated-price");
+            if (priceNode) {
+                priceNode.text(calculatedPrice);
+            } else {
+                provider.node("calculated-price", calculatedPrice);
+            }
+        });
+    });
+}
+
+app.get('/getProviders', (req, res) => {
+    const { plant } = req.query;
+
+    if (!plant) {
+        return res.status(400).json({ error: "Plant not specified" });
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    const plantNode = xmlDocDatabase.get(`//plant[name[text()='${plant}']]`);
+    if (!plantNode) {
+        return res.status(404).json({ error: `Plant '${plant}' not found` });
+    }
+
+    // Alle Anbieter für die gewählte Plant abrufen
+    const providers = plantNode.find("providers/provider/name").map(provider => provider.text());
+
+    res.json(providers);
+});
+
+app.post('/addProvider', (req, res) => {
+    const { "provider-name": providerName, "base-fee": baseFee, threshold, factor } = req.body;
+
+    if (!providerName || !baseFee || !threshold || !factor) {
+        return res.status(400).send("All fields are required.");
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    const providerID = "p" + Math.floor(Math.random() * 10000);
+
+    const plants = xmlDocDatabase.find("//plant");
+    plants.forEach(plant => {
+        const providersNode = plant.get("providers");
+
+        // Neuen Provider mit allen Details hinzufügen
+        const newProvider = new libxmljs.Element(xmlDocDatabase, "provider");
+        newProvider.node("name", providerName);
+        newProvider.node("base-fee", baseFee);
+        newProvider.node("factor", factor);
+
+        const tariff = newProvider.node("tariff");
+        tariff.node("threshold", threshold);
+
+        providersNode.addChild(newProvider);
+    });
+
+    // Berechne den `calculated-price` neu
+    updateCalculatedPrice(xmlDocDatabase);
+
+    // validate new database against schema
+    const valid = validateDatabase(xmlDocDatabase)
+    if (!valid) {
+        res.status(400).send('Invalid XML')
+        return
+    }
+
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), "utf-8");
+
+    res.sendStatus(200);
+});
+
+function validateDatabase(xmlDocDatabase) {
+    const databaseXsd = fs.readFileSync(path.resolve('xml-content', 'database', 'database.xsd'), 'utf-8')
     const xmlDocDatabaseXsd = libxmljs.parseXml(databaseXsd)
     return xmlDocDatabase.validate(xmlDocDatabaseXsd)
 }

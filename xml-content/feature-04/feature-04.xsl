@@ -11,6 +11,34 @@
             <head>
                 <title>Energiewerke Mittelland Reloaded</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
+                <script>
+                    function updateProviders() {
+                        const plantSelect = document.getElementById("plant");
+                        const providerSelect = document.getElementById("provider");
+                        providerSelect.innerHTML = ""; // Vorherige Optionen entfernen
+
+                        fetch(`/getProviders?plant=${encodeURIComponent(plantSelect.value)}`)
+                                .then(response => response.json())
+                                .then(providers => {
+
+                                    // Standardoption "Bitte wählen"
+                                    const defaultOption = document.createElement("option");
+                                    defaultOption.value = "";
+                                    defaultOption.textContent = "Bitte wählen";
+                                    providerSelect.appendChild(defaultOption);
+
+                                    // Anbieteroptionen hinzufügen
+                                    providers.forEach(providerName => {
+                                        const option = document.createElementNS("http://www.w3.org/1999/xhtml", "option");
+                                        option.setAttribute("value", providerName); // Statt option.value
+                                        option.textContent = providerName;
+                                        providerSelect.appendChild(option);
+                                    });
+
+                                })
+                                .catch(error => console.error("Fehler beim Abrufen der Anbieter:", error));
+                    }
+                </script>
             </head>
             <body>
 
@@ -76,9 +104,16 @@
 
                         <form action="/updateProviderFactor" method="post">
                             <div>
+                                <label for="plant">Plant wählen:</label>
+                                <select name="plant" id="plant" onchange="updateProviders()">
+                                    <option value="" disabled="disabled" selected="selected">Bitte wählen</option>
+                                    <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>
+                                </select>
+                            </div>
+                            <div>
                                 <label for="provider">Anbieter wählen:</label>
                                 <select name="provider" id="provider">
-                                    <xsl:apply-templates select="document('../database/database.xml')/energy-data/provider-data/provider"/>
+                                    <option value="" disabled="disabled" selected="selected">Bitte Plant zuerest wählen</option>
                                 </select>
                             </div>
                             <div>

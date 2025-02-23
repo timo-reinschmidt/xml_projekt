@@ -4,15 +4,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="energy-plant"/>
-                <xs:element ref="provider-data"/>
             </xs:sequence>
         </xs:complexType>
-
-        <!-- Key für Provider-IDs -->
-        <xs:key name="providerKey">
-            <xs:selector xpath="provider-data/provider"/>
-            <xs:field xpath="@id"/>
-        </xs:key>
     </xs:element>
 
     <xs:element name="energy-plant">
@@ -36,14 +29,25 @@
     <xs:element name="providers">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="provider" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="provider" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string"/>
+                            <xs:element name="base-fee" type="xs:decimal"/>
+                            <xs:element name="factor" type="xs:decimal"/>
+                            <xs:element name="tariff">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="threshold" type="xs:decimal"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="calculated-price" type="xs:decimal"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
-
-        <xs:keyref name="providerRef" refer="providerKey">
-            <xs:selector xpath="providers/provider"/>
-            <xs:field xpath="."/>
-        </xs:keyref>
     </xs:element>
 
     <xs:element name="statistics">
@@ -70,31 +74,4 @@
             <xs:maxInclusive value="20"/>
         </xs:restriction>
     </xs:simpleType>
-
-    <xs:element name="provider-data">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="provider" maxOccurs="unbounded"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="provider">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
-                <xs:element name="base-fee" type="xs:decimal"/>
-                <xs:element name="factor" type="xs:decimal"/>
-                <xs:element name="tariff">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="threshold" type="xs:decimal"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-            </xs:sequence>
-            <xs:attribute name="id" type="xs:string" use="required"/>
-        </xs:complexType>
-    </xs:element>
-
 </xs:schema>

@@ -73,7 +73,7 @@
 
                         <hr/>
 
-                        <h3>Strom Anbieter</h3>
+                        <h3>Strom Anbieter Übersicht</h3>
 
                         <table border="1">
                             <thead>
@@ -81,7 +81,6 @@
                                     <th>Anbieter Name</th>
                                     <th>Grundgebühr (CHF)</th>
                                     <th>Schwelle (kW)</th>
-                                    <th>Faktor</th>
                                     <xsl:for-each select="document('../database/database.xml')/energy-data/energy-plant/plant">
                                         <xsl:variable name="latestPriceNode" select="statistics/price[last()]"/>
                                         <xsl:variable name="latestPrice" select="$latestPriceNode"/>
@@ -96,7 +95,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <xsl:apply-templates select="document('../database/database.xml')/energy-data/provider-data/provider" mode="table"/>
+                                <!-- Einzigartige Anbieter sammeln -->
+                                <xsl:for-each select="document('../database/database.xml')/energy-data/energy-plant/plant/providers/provider[not(name=preceding::providers/provider/name)]">
+                                    <xsl:variable name="providerName" select="name"/>
+
+                                    <tr>
+                                        <td><xsl:value-of select="$providerName"/></td>
+                                        <td><xsl:value-of select="base-fee"/></td>
+                                        <td><xsl:value-of select="tariff/threshold"/></td>
+
+                                        <!-- Iteriere über alle Plants -->
+                                        <xsl:for-each select="document('../database/database.xml')/energy-data/energy-plant/plant">
+                                            <xsl:variable name="currentPlantName" select="name"/>
+
+                                            <!-- Suche nach dem Provider in dieser Plant -->
+                                            <xsl:variable name="providerData" select="providers/provider[name=$providerName]"/>
+
+                                            <xsl:choose>
+                                                <xsl:when test="$providerData">
+                                                    <td>
+                                                        <xsl:value-of select="$providerData/calculated-price"/> CHF
+                                                        <br/>
+                                                        <small>Faktor: <xsl:value-of select="$providerData/factor"/></small>
+                                                    </td>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <td>Provider does not exist</td>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:for-each>
+                                    </tr>
+                                </xsl:for-each>
                             </tbody>
                         </table>
 
@@ -169,26 +198,26 @@
             <td><xsl:value-of select="name"/></td>
             <td><xsl:value-of select="base-fee"/></td>
             <td><xsl:value-of select="tariff/threshold"/></td>
-            <td><xsl:value-of select="factor"/></td>
 
-            <xsl:variable name="providerFactor" select="factor"/>
-
+            <!-- Iteriere über alle Plants -->
             <xsl:for-each select="document('../database/database.xml')/energy-data/energy-plant/plant">
-                <xsl:variable name="latestPrice" select="statistics/price[last()]"/>
+                <xsl:variable name="currentPlantName" select="name"/>
 
-                <xsl:variable name="calculatedPrice">
-                    <xsl:choose>
-                        <xsl:when test="string-length($latestPrice) > 0 and string-length($providerFactor) > 0">
-                            <xsl:value-of select="format-number($latestPrice * $providerFactor, '0.00')"/>
-                        </xsl:when>
-                        <xsl:otherwise>N/A</xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
+                <!-- Suche nach einem passenden Provider in dieser Plant -->
+                <xsl:variable name="providerData" select="providers/provider[name=current()/../name]"/>
 
-                <td>
-                    <xsl:text>Berechneter CHF/KW: </xsl:text>
-                    <xsl:value-of select="$calculatedPrice"/> CHF
-                </td>
+                <xsl:choose>
+                    <xsl:when test="$providerData">
+                        <td>
+                            <xsl:value-of select="$providerData/calculated-price"/> CHF
+                            <br/>
+                            <small>Faktor: <xsl:value-of select="$providerData/factor"/></small>
+                        </td>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <td>Provider does not exist</td>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
         </tr>
     </xsl:template>

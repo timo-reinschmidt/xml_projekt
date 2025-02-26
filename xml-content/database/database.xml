@@ -87,14 +87,7 @@
                         <threshold>0</threshold>
                     </tariff>
                 <calculated-price>2.60</calculated-price></provider>
-                <provider>
-                    <name>Energie4Us</name>
-                    <base-fee>15</base-fee>
-                    <factor>3</factor>
-                    <tariff>
-                        <threshold>50</threshold>
-                    </tariff>
-                <calculated-price>15.60</calculated-price></provider>
+                
                 <provider>
                     <name>FreeStrom4All</name>
                     <base-fee>100</base-fee>
@@ -282,14 +275,7 @@
                         <threshold>50</threshold>
                     </tariff>
                 <calculated-price>33.00</calculated-price></provider>
-                <provider>
-                    <name>FreeStrom4All</name>
-                    <base-fee>100</base-fee>
-                    <factor>1.4</factor>
-                    <tariff>
-                        <threshold>200</threshold>
-                    </tariff>
-                <calculated-price>15.40</calculated-price></provider>
+                
                 <provider>
                     <name>Strom 'r' Us</name>
                     <base-fee>40</base-fee>
@@ -298,15 +284,7 @@
                         <threshold>100</threshold>
                     </tariff>
                 <calculated-price>12.10</calculated-price></provider>
-                <provider>
-                    <name>Elektro AG</name>
-                    <base-fee>0</base-fee>
-                    <factor>8</factor>
-                    <tariff>
-                        <threshold>0</threshold>
-                    </tariff>
-                    <calculated-price>88.00</calculated-price>
-                </provider>
+                
             </providers>
         </plant>
     </energy-plant>

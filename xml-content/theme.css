@@ -90,3 +90,45 @@ th {
     color: white;
     font-weight: bold;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 18%;
+}
+
+.dropbtn {
+    background-color: #6a4a8c;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: purple;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown-content label {
+    display: block;
+    padding: 5px;
+    text-align: left;
+}
+
+.dropdown-content input {
+    margin-left: 8px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

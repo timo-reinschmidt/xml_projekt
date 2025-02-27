@@ -93,7 +93,7 @@
                             </div>
                             <div>
                                 <label for="price-input">Neuer Preis</label>
-                                <input type="text" name="price" id="price-input" placeholder="Neuer Preis"/>
+                                <input type="text" name="price" id="price-input" placeholder="Min: 2 / Max: 20"/>
                             </div>
                             <button type="submit">Einfügen</button>
                         </form>
@@ -188,15 +188,15 @@
                             </div>
                             <div>
                                 <label for="base-fee">Grundgebühr (CHF)</label>
-                                <input type="number" name="base-fee" id="base-fee" placeholder="z.B. 0 oder 50" required="required"/>
+                                <input type="number" name="base-fee" id="base-fee" placeholder="Min: 0 / Max: 100" required="required"/>
                             </div>
                             <div>
                                 <label for="threshold">Schwelle (kW)</label>
-                                <input type="number" name="threshold" id="threshold" placeholder="z.B. 0 oder 50" required="required"/>
+                                <input type="number" name="threshold" id="threshold" placeholder="Min: 0 / Max: 1000" required="required"/>
                             </div>
                             <div>
                                 <label for="factor-new">Faktor</label>
-                                <input type="number" name="factor" id="factor-new" step="0.1" placeholder="Faktor eingeben" required="required"/>
+                                <input type="number" name="factor" id="factor-new" step="0.1" placeholder="Min: 0.1 / Max: 10" required="required"/>
                             </div>
                             <div>
                                 <label for="plant">Plant(s) zuweisen:</label>

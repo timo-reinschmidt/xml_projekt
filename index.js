@@ -191,9 +191,9 @@ app.get('/getProviders', (req, res) => {
 });
 
 app.post('/addProvider', (req, res) => {
-    const { "provider-name": providerName, "base-fee": baseFee, threshold, factor } = req.body;
+    const { "provider-name": providerName, "base-fee": baseFee, threshold, factor, plants } = req.body;
 
-    if (!providerName || !baseFee || !threshold || !factor) {
+    if (!providerName || !baseFee || !threshold || !factor || !plants) {
         return res.status(400).send("All fields are required.");
     }
 
@@ -201,13 +201,19 @@ app.post('/addProvider', (req, res) => {
     const databaseXml = fs.readFileSync(databasePath, 'utf-8');
     const xmlDocDatabase = libxmljs.parseXml(databaseXml);
 
-    const providerID = "p" + Math.floor(Math.random() * 10000);
+    // Plants aus Mehrfachauswahl
+    const selectedPlants = Array.isArray(plants) ? plants : [plants];
 
-    const plants = xmlDocDatabase.find("//plant");
-    plants.forEach(plant => {
-        const providersNode = plant.get("providers");
+    selectedPlants.forEach(plantName => {
+        const plantNode = xmlDocDatabase.get(`//plant[name[text()='${plantName}']]`);
+        if (!plantNode) {
+            console.error(`Plant '${plantName}' not found.`);
+            return;
+        }
 
-        // Neuen Provider mit allen Details hinzufügen
+        const providersNode = plantNode.get("providers");
+
+        // Neuen Provider hinzufügen
         const newProvider = new libxmljs.Element(xmlDocDatabase, "provider");
         newProvider.node("name", providerName);
         newProvider.node("base-fee", baseFee);
@@ -222,11 +228,11 @@ app.post('/addProvider', (req, res) => {
     // Berechne den `calculated-price` neu
     updateCalculatedPrice(xmlDocDatabase);
 
-    // validate new database against schema
-    const valid = validateDatabase(xmlDocDatabase)
+    // Validate XML
+    const valid = validateDatabase(xmlDocDatabase);
     if (!valid) {
-        res.status(400).send('Invalid XML')
-        return
+        res.status(400).send('Invalid XML');
+        return;
     }
 
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), "utf-8");

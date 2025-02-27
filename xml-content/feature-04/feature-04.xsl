@@ -171,6 +171,20 @@
                                 <label for="factor-new">Faktor</label>
                                 <input type="number" name="factor" id="factor-new" step="0.1" required="required"/>
                             </div>
+                            <div>
+                                <label for="plant">Plant(s) zuweisen:</label>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Auswahl</button>
+                                    <div class="dropdown-content">
+                                        <xsl:for-each select="document('../database/database.xml')/energy-data/energy-plant/plant">
+                                            <label>
+                                                <input type="checkbox" name="plants" value="{name}"/>
+                                                <xsl:value-of select="name"/>
+                                            </label>
+                                        </xsl:for-each>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="button-group">
                                 <button type="submit">Anbieter Hinzufügen</button>
                             </div>
@@ -183,6 +197,12 @@
 
     <xsl:template match="plant">
         <option>
+            <xsl:value-of select="name"/>
+        </option>
+    </xsl:template>
+
+    <xsl:template match="plants">
+        <option value="{name}">
             <xsl:value-of select="name"/>
         </option>
     </xsl:template>

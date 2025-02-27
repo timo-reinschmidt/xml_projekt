@@ -40,7 +40,8 @@
                     <tariff>
                         <threshold>50</threshold>
                     </tariff>
-                <calculated-price>57.00</calculated-price></provider>
+                    <calculated-price>57.00</calculated-price>
+                </provider>
                 <provider>
                     <name>FreeStrom4All</name>
                     <base-fee>100</base-fee>
@@ -48,9 +49,17 @@
                     <tariff>
                         <threshold>200</threshold>
                     </tariff>
-                <calculated-price>26.60</calculated-price></provider>
-
-            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>57.00</calculated-price></provider></providers>
+                    <calculated-price>26.60</calculated-price>
+                </provider>
+                <provider>
+                    <name>Elektro AG</name>
+                    <base-fee>0</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff><calculated-price>57.00</calculated-price>
+                </provider>
+            </providers>
         </plant>
         <plant>
             <name>Luzern</name>
@@ -101,8 +110,17 @@
                     <tariff>
                         <threshold>100</threshold>
                     </tariff>
-                <calculated-price>5.72</calculated-price></provider>
-        <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>15.60</calculated-price></provider></providers>
+                <calculated-price>5.72</calculated-price>
+                </provider>
+                <provider>
+                    <name>Elektro AG</name>
+                    <base-fee>0</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff><calculated-price>15.60</calculated-price>
+                </provider>
+            </providers>
         </plant>
         <plant>
             <name>Bern</name>
@@ -156,7 +174,15 @@
                         <threshold>100</threshold>
                     </tariff>
                 <calculated-price>13.75</calculated-price></provider>
-            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>37.50</calculated-price></provider></providers>
+                <provider>
+                    <name>Elektro AG</name>
+                    <base-fee>0</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff><calculated-price>37.50</calculated-price>
+                </provider>
+            </providers>
         </plant>
         <plant>
             <name>Zürich</name>
@@ -208,7 +234,16 @@
                         <threshold>100</threshold>
                     </tariff>
                 <calculated-price>4.95</calculated-price></provider>
-            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>3</factor><tariff><threshold>0</threshold></tariff><calculated-price>13.50</calculated-price></provider></providers>
+                <provider>
+                    <name>Elektro AG</name>
+                    <base-fee>0</base-fee>
+                    <factor>3</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff>
+                    <calculated-price>13.50</calculated-price>
+                </provider>
+            </providers>
         </plant>
         <plant>
             <name>Genf</name>
@@ -229,7 +264,8 @@
                     <tariff>
                         <threshold>200</threshold>
                     </tariff>
-                <calculated-price>55.00</calculated-price></provider>
+                <calculated-price>55.00</calculated-price>
+                </provider>
                 <provider>
                     <name>KW Direkt GmbH</name>
                     <base-fee>0</base-fee>
@@ -262,7 +298,16 @@
                         <threshold>100</threshold>
                     </tariff>
                 <calculated-price>12.10</calculated-price></provider>
-            <provider><name>Elektro AG</name><base-fee>0</base-fee><factor>8</factor><tariff><threshold>0</threshold></tariff><calculated-price>88.00</calculated-price></provider></providers>
+                <provider>
+                    <name>Elektro AG</name>
+                    <base-fee>0</base-fee>
+                    <factor>8</factor>
+                    <tariff>
+                        <threshold>0</threshold>
+                    </tariff>
+                    <calculated-price>88.00</calculated-price>
+                </provider>
+            </providers>
         </plant>
     </energy-plant>
 </energy-data>

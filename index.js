@@ -8,9 +8,32 @@ app.use(express.static(path.join(__dirname, 'xml-content')));
 app.use(express.text());
 app.use(express.urlencoded({ extended: false }));
 
+const changesLogPath = path.resolve('xml-content/database/last-changes.xml');
+
 app.get('/', (req, res) => {
     res.sendFile(path.resolve('xml-content', 'index.xml'));
 })
+
+app.get('/feature-04/done', (req, res) => {
+    res.sendFile(changesLogPath);
+});
+
+function saveChangeLog(action, plant, provider, details = {}) {
+    const detailsXML = Object.entries(details)
+        .map(([key, value]) => `<${key}>${value}</${key}>`)
+        .join("\n    ");
+
+    const changesXML = `<?xml version="1.0" encoding="UTF-8"?>
+    <?xml-stylesheet type="text/xsl" href="../feature-04/feature-04.done.xsl"?>
+    <changes>
+        <action>${action}</action>
+        <plant>${plant}</plant>
+        <provider>${provider}</provider>
+        ${detailsXML}
+    </changes>`;
+
+    fs.writeFileSync(changesLogPath, changesXML, 'utf-8');
+}
 
 app.post('/convertToPdf', async (req, res) => {
     const response = await fetch('https://fop.xml.hslu-edu.ch/fop.php', {
@@ -89,6 +112,8 @@ app.post('/updateData', (req, res) => {
     // Berechne `calculated-price` für alle Provider dieser Plant neu
     updateCalculatedPrice(xmlDocDatabase);
 
+    saveChangeLog('Plant Preis wurde angepasst', plant, 'N/A', { date, price });
+
     // validate new database against schema
     const valid = validateDatabase(xmlDocDatabase)
     if (!valid) {
@@ -98,8 +123,7 @@ app.post('/updateData', (req, res) => {
 
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
 
-    res.sendStatus(200);
-    res.redirect('/feature-04/feature-04.done.xsl');
+    res.redirect('/feature-04/done');
 });
 
 app.post('/updateProviderFactor', (req, res) => {
@@ -132,6 +156,8 @@ app.post('/updateProviderFactor', (req, res) => {
     // `calculated-price` aktualisieren
     updateCalculatedPrice(xmlDocDatabase);
 
+    saveChangeLog('Anbieter Faktor wurde aktualisiert', plant, provider, { factor });
+
     // validate database against schema
     const valid = validateDatabase(xmlDocDatabase)
     if (!valid) {
@@ -141,7 +167,7 @@ app.post('/updateProviderFactor', (req, res) => {
 
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
 
-    res.redirect('/feature-04/feature-04.done.xsl');
+    res.redirect('/feature-04/done');
 });
 
 function updateCalculatedPrice(xmlDocDatabase) {
@@ -229,6 +255,8 @@ app.post('/addProvider', (req, res) => {
     // Berechne den `calculated-price` neu
     updateCalculatedPrice(xmlDocDatabase);
 
+    saveChangeLog('Anbieter wurde hinzugefügt', selectedPlants.join(', '), providerName, { baseFee, threshold, factor });
+
     // Validate XML
     const valid = validateDatabase(xmlDocDatabase);
     if (!valid) {
@@ -238,8 +266,7 @@ app.post('/addProvider', (req, res) => {
 
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), "utf-8");
 
-    res.sendStatus(200);
-    res.redirect('/feature-04/feature-04.done.xsl');
+    res.redirect('/feature-04/done');
 });
 
 app.post('/removeProvider', (req, res) => {
@@ -265,6 +292,8 @@ app.post('/removeProvider', (req, res) => {
 
     providerNode.remove();
 
+    saveChangeLog('Anbieter wurde entfernt', plant, provider, {});
+
     // Validierung gegen Schema
     const valid = validateDatabase(xmlDocDatabase);
     if (!valid) {
@@ -274,8 +303,7 @@ app.post('/removeProvider', (req, res) => {
     // Speichert die aktualisierte XML-Datei
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
 
-    res.sendStatus(200);
-    res.redirect('/feature-04/feature-04.done.xsl');
+    res.redirect('/feature-04/done');
 });
 
 function validateDatabase(xmlDocDatabase) {

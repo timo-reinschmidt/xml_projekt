@@ -147,7 +147,7 @@
                                                     </td>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                    <td>Provider does not exist</td>
+                                                    <td>Anbieter ist in dieser Region nicht verfügbar</td>
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:for-each>

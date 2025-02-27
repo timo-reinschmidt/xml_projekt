@@ -15,19 +15,19 @@
                     function updateProviders() {
                         const plantSelect = document.getElementById("plant");
                         const providerSelect = document.getElementById("provider");
-                        providerSelect.innerHTML = ""; // Vorherige Optionen entfernen
+                        providerSelect.innerHTML = "";
 
                         fetch(`/getProviders?plant=${encodeURIComponent(plantSelect.value)}`)
                                 .then(response => response.json())
                                 .then(providers => {
 
-                                    // Standardoption "Bitte wählen"
                                     const defaultOption = document.createElement("option");
                                     defaultOption.value = "";
                                     defaultOption.textContent = "Bitte wählen";
+                                    defaultOption.disabled = true;
+                                    defaultOption.selected = true;
                                     providerSelect.appendChild(defaultOption);
 
-                                    // Anbieteroptionen hinzufügen
                                     providers.forEach(providerName => {
                                         const option = document.createElementNS("http://www.w3.org/1999/xhtml", "option");
                                         option.setAttribute("value", providerName); // Statt option.value
@@ -35,6 +35,33 @@
                                         providerSelect.appendChild(option);
                                     });
 
+                                })
+                                .catch(error => console.error("Fehler beim Abrufen der Anbieter:", error));
+                    }
+
+                    function updateProvidersForRemoval() {
+                        const plantSelect = document.getElementById("remove-plant");
+                        const providerSelect = document.getElementById("remove-provider");
+                        providerSelect.innerHTML = "";
+
+                        if (!plantSelect.value) return;
+
+                        fetch(`/getProviders?plant=${encodeURIComponent(plantSelect.value)}`)
+                                .then(response => response.json())
+                                .then(providers => {
+                                    const defaultOption = document.createElement("option");
+                                    defaultOption.value = "";
+                                    defaultOption.textContent = "Bitte wählen";
+                                    defaultOption.disabled = true;
+                                    defaultOption.selected = true;
+                                    providerSelect.appendChild(defaultOption);
+
+                                    providers.forEach(providerName => {
+                                        const option = document.createElementNS("http://www.w3.org/1999/xhtml", "option");
+                                        option.value = providerName;
+                                        option.textContent = providerName;
+                                        providerSelect.appendChild(option);
+                                    });
                                 })
                                 .catch(error => console.error("Fehler beim Abrufen der Anbieter:", error));
                     }
@@ -188,6 +215,25 @@
                             <div class="button-group">
                                 <button type="submit">Anbieter Hinzufügen</button>
                             </div>
+                        </form>
+
+                        <h3>Strom Anbieter aus Plant entfernen</h3>
+
+                        <form action="/removeProvider" method="post">
+                            <div>
+                                <label for="remove-plant">Plant wählen:</label>
+                                <select name="plant" id="remove-plant" onchange="updateProvidersForRemoval()">
+                                    <option value="" disabled="disabled" selected="selected">Bitte wählen</option>
+                                    <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="remove-provider">Anbieter wählen:</label>
+                                <select name="provider" id="remove-provider">
+                                    <option value="" disabled="disabled" selected="selected">Bitte Plant zuerst wählen</option>
+                                </select>
+                            </div>
+                            <button type="submit">Anbieter Entfernen</button>
                         </form>
                     </div>
                 </div>

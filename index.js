@@ -99,6 +99,7 @@ app.post('/updateData', (req, res) => {
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
 
     res.sendStatus(200);
+    res.redirect('/feature-04/feature-04.done.xsl');
 });
 
 app.post('/updateProviderFactor', (req, res) => {
@@ -238,6 +239,43 @@ app.post('/addProvider', (req, res) => {
     fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), "utf-8");
 
     res.sendStatus(200);
+    res.redirect('/feature-04/feature-04.done.xsl');
+});
+
+app.post('/removeProvider', (req, res) => {
+    const { plant, provider } = req.body;
+
+    if (!plant || !provider) {
+        return res.status(400).send("Plant oder Provider nicht ausgewählt.");
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+
+    const plantNode = xmlDocDatabase.get(`//plant[name[text()='${plant}']]`);
+    if (!plantNode) {
+        return res.status(404).send("Plant nicht gefunden.");
+    }
+
+    const providerNode = plantNode.get(`providers/provider[name[text()='${provider}']]`);
+    if (!providerNode) {
+        return res.status(404).send("Provider existiert nicht in dieser Plant.");
+    }
+
+    providerNode.remove();
+
+    // Validierung gegen Schema
+    const valid = validateDatabase(xmlDocDatabase);
+    if (!valid) {
+        return res.status(400).send("Invalid XML-Datenstruktur.");
+    }
+
+    // Speichert die aktualisierte XML-Datei
+    fs.writeFileSync(databasePath, xmlDocDatabase.toString(true), 'utf-8');
+
+    res.sendStatus(200);
+    res.redirect('/feature-04/feature-04.done.xsl');
 });
 
 function validateDatabase(xmlDocDatabase) {

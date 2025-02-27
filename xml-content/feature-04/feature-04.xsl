@@ -184,19 +184,19 @@
                         <form action="/addProvider" method="post">
                             <div>
                                 <label for="provider-name">Anbieter Name</label>
-                                <input type="text" name="provider-name" id="provider-name" required="required"/>
+                                <input type="text" name="provider-name" id="provider-name" placeholder="Anbieter Name" required="required"/>
                             </div>
                             <div>
                                 <label for="base-fee">Grundgebühr (CHF)</label>
-                                <input type="number" name="base-fee" id="base-fee" required="required"/>
+                                <input type="number" name="base-fee" id="base-fee" placeholder="z.B. 0 oder 50" required="required"/>
                             </div>
                             <div>
                                 <label for="threshold">Schwelle (kW)</label>
-                                <input type="number" name="threshold" id="threshold" required="required"/>
+                                <input type="number" name="threshold" id="threshold" placeholder="z.B. 0 oder 50" required="required"/>
                             </div>
                             <div>
                                 <label for="factor-new">Faktor</label>
-                                <input type="number" name="factor" id="factor-new" step="0.1" required="required"/>
+                                <input type="number" name="factor" id="factor-new" step="0.1" placeholder="Faktor eingeben" required="required"/>
                             </div>
                             <div>
                                 <label for="plant">Plant(s) zuweisen:</label>

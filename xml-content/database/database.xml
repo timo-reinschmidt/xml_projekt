@@ -195,14 +195,7 @@
                         <threshold>200</threshold>
                     </tariff>
                 <calculated-price>22.50</calculated-price></provider>
-                <provider>
-                    <name>KW Direkt GmbH</name>
-                    <base-fee>0</base-fee>
-                    <factor>0.5</factor>
-                    <tariff>
-                        <threshold>0</threshold>
-                    </tariff>
-                <calculated-price>2.25</calculated-price></provider>
+                
                 <provider>
                     <name>Energie4Us</name>
                     <base-fee>15</base-fee>

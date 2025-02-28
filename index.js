@@ -185,10 +185,10 @@ app.get('/getProviders', (req, res) => {
         return res.status(404).json({ error: `Plant '${plant}' not found` });
     }
 
-    // Alle Anbieter für die gewählte Plant abrufen
-    const providers = plantNode.find("providers/provider/name").map(provider => provider.text());
+    const providersSet = new Set();
+    plantNode.find("providers/provider/name").forEach(provider => providersSet.add(provider.text()));
 
-    res.json(providers);
+    res.json(Array.from(providersSet));
 });
 
 app.post('/addProvider', (req, res) => {

@@ -33,12 +33,12 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="name" type="xs:string"/>
-                            <xs:element name="base-fee" type="xs:decimal"/>
-                            <xs:element name="factor" type="xs:decimal"/>
+                            <xs:element name="base-fee" type="baseFeeType"/>
+                            <xs:element name="factor" type="factorType"/>
                             <xs:element name="tariff">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="threshold" type="xs:decimal"/>
+                                        <xs:element name="threshold" type="thresholdType"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
@@ -72,6 +72,27 @@
         <xs:restriction base="xs:decimal">
             <xs:minInclusive value="2"/>
             <xs:maxInclusive value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="baseFeeType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="thresholdType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="1000"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="factorType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.1"/>
+            <xs:maxInclusive value="10"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

@@ -54,10 +54,10 @@
                 <provider>
                     <name>Elektro AG</name>
                     <base-fee>0</base-fee>
-                    <factor>3</factor>
+                    <factor>2.5</factor>
                     <tariff>
                         <threshold>0</threshold>
-                    </tariff><calculated-price>57.00</calculated-price>
+                    </tariff><calculated-price>47.50</calculated-price>
                 </provider>
             </providers>
         </plant>

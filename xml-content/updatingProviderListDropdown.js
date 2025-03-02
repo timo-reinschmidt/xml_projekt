@@ -1,6 +1,10 @@
 let firstLoad = true; // Verhindert den ersten automatischen Aufruf
 let isUpdating = false; // Blockiert parallele Updates
 
+/**
+ * Aktualisiert die Liste der Anbieter basierend auf der ausgewählten Plant.
+ * → JavaScript wird benötigt, da XSLT keine dynamischen DOM-Manipulationen oder asynchrone Serveranfragen ermöglicht.
+ */
 function updateProviders() {
     if (firstLoad) {
         firstLoad = false;
@@ -56,6 +60,10 @@ function updateProviders() {
         });
 }
 
+/**
+ * Aktualisiert die Anbieter-Liste für die Entfernen-Funktion.
+ * → XSLT kann keine Events auslösen oder das DOM nachträglich anpassen, daher wird JS genutzt.
+ */
 // Funktion zum Aktualisieren der Anbieter für die Entfernung
 let firstLoadRemove = true;
 let isUpdatingRemove = false;
@@ -115,7 +123,10 @@ function updateProvidersForRemoval() {
         });
 }
 
-// Event-Listener initialisieren, wenn die Seite geladen ist
+/**
+ * Initialisiert die Event-Listener für die Dropdowns.
+ * → XSLT kann keine Event-Listener verarbeiten, daher wird JS verwendet.
+ */
 function initEventListeners() {
 
     const plantDropdown = document.getElementById("plant");

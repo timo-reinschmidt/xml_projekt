@@ -93,7 +93,7 @@
                             </div>
                             <div>
                                 <label for="price-input">Neuer Preis</label>
-                                <input type="text" name="price" id="price-input" placeholder="Neuer Preis"/>
+                                <input type="text" name="price" id="price-input" placeholder="Min: 2 / Max: 20"/>
                             </div>
                             <button type="submit">Einfügen</button>
                         </form>
@@ -147,7 +147,7 @@
                                                     </td>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                    <td>Provider does not exist</td>
+                                                    <td>Anbieter ist in dieser Region nicht verfügbar</td>
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:for-each>
@@ -184,19 +184,19 @@
                         <form action="/addProvider" method="post">
                             <div>
                                 <label for="provider-name">Anbieter Name</label>
-                                <input type="text" name="provider-name" id="provider-name" required="required"/>
+                                <input type="text" name="provider-name" id="provider-name" placeholder="Anbieter Name" required="required"/>
                             </div>
                             <div>
                                 <label for="base-fee">Grundgebühr (CHF)</label>
-                                <input type="number" name="base-fee" id="base-fee" required="required"/>
+                                <input type="number" name="base-fee" id="base-fee" placeholder="Min: 0 / Max: 100" required="required"/>
                             </div>
                             <div>
                                 <label for="threshold">Schwelle (kW)</label>
-                                <input type="number" name="threshold" id="threshold" required="required"/>
+                                <input type="number" name="threshold" id="threshold" placeholder="Min: 0 / Max: 1000" required="required"/>
                             </div>
                             <div>
                                 <label for="factor-new">Faktor</label>
-                                <input type="number" name="factor" id="factor-new" step="0.1" required="required"/>
+                                <input type="number" name="factor" id="factor-new" step="0.1" placeholder="Min: 0.1 / Max: 10" required="required"/>
                             </div>
                             <div>
                                 <label for="plant">Plant(s) zuweisen:</label>

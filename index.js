@@ -10,14 +10,26 @@ app.use(express.urlencoded({ extended: false }));
 
 const changesLogPath = path.resolve('xml-content/database/last-changes.xml');
 
+/**
+ * Lädt die Hauptseite.
+ * → XML-Technologie kann keine Server-Anfragen verarbeiten oder Dateien dynamisch bereitstellen.
+ */
 app.get('/', (req, res) => {
     res.sendFile(path.resolve('xml-content', 'index.xml'));
 })
 
+/**
+ * Lädt das Änderungsprotokoll.
+ * → XSLT kann keine Dateisystem-Operationen durchführen.
+ */
 app.get('/feature-04/done', (req, res) => {
     res.sendFile(changesLogPath);
 });
 
+/**
+ * Speichert Änderungen in einer XML-Datei.
+ * → XSLT kann keine Dateien auf dem Server erstellen oder bearbeiten.
+ */
 function saveChangeLog(action, plant, provider, details = {}) {
     const detailsXML = Object.entries(details)
         .map(([key, value]) => `<${key}>${value}</${key}>`)
@@ -35,6 +47,10 @@ function saveChangeLog(action, plant, provider, details = {}) {
     fs.writeFileSync(changesLogPath, changesXML, 'utf-8');
 }
 
+/**
+ * Konvertiert XML-Daten in ein PDF.
+ * → XSLT allein kann keine externen Web-APIs aufrufen oder Binärdateien speichern.
+ */
 app.post('/convertToPdf', async (req, res) => {
     const response = await fetch('https://fop.xml.hslu-edu.ch/fop.php', {
         method: "POST",
@@ -49,6 +65,10 @@ app.post('/convertToPdf', async (req, res) => {
     res.sendFile(path.resolve('temp.pdf'))
 })
 
+/**
+ * Prüft Login-Daten anhand einer XML-Datenbank.
+ * → XSLT kann keine Benutzeranfragen auswerten oder Sessions verwalten.
+ */
 app.post('/checkLogin', (req, res) => {
     // save the inputs of the user from the POST req body
     let inputUserName = req.body.username;
@@ -89,6 +109,10 @@ app.post('/checkLogin', (req, res) => {
     }
 })
 
+/**
+ * Aktualisiert den Preis einer Plant und speichert ihn in XML.
+ * → XSLT kann XML nicht verändern oder auf dem Server speichern.
+ */
 app.post('/updateData', (req, res) => {
     const { plant, date, price } = req.body;
 
@@ -126,6 +150,10 @@ app.post('/updateData', (req, res) => {
     res.redirect('/feature-04/done');
 });
 
+/**
+ * Aktualisiert den Faktor eines Anbieters in XML.
+ * → XSLT kann keine XML-Daten auf dem Server verändern.
+ */
 app.post('/updateProviderFactor', (req, res) => {
     const { plant, provider, factor } = req.body;
 
@@ -170,6 +198,10 @@ app.post('/updateProviderFactor', (req, res) => {
     res.redirect('/feature-04/done');
 });
 
+/**
+ * Berechnet die neuen Preise anhand des Faktors und speichert sie in XML.
+ * → XSLT kann keine serverseitigen Berechnungen durchführen oder XML-Daten verändern.
+ */
 function updateCalculatedPrice(xmlDocDatabase) {
     const plants = xmlDocDatabase.find("//plant");
 
@@ -195,6 +227,10 @@ function updateCalculatedPrice(xmlDocDatabase) {
     });
 }
 
+/**
+ * Gibt alle Anbieter einer Plant zurück.
+ * → XSLT kann keine serverseitigen JSON-Responses erzeugen.
+ */
 app.get('/getProviders', (req, res) => {
     const { plant } = req.query;
 
@@ -217,6 +253,10 @@ app.get('/getProviders', (req, res) => {
     res.json(Array.from(providersSet));
 });
 
+/**
+ * Fügt einen neuen Anbieter hinzu und speichert ihn in XML.
+ * → XSLT kann keine XML-Daten auf dem Server verändern oder speichern.
+ */
 app.post('/addProvider', (req, res) => {
     const { "provider-name": providerName, "base-fee": baseFee, threshold, factor, plants } = req.body;
 
@@ -269,6 +309,10 @@ app.post('/addProvider', (req, res) => {
     res.redirect('/feature-04/done');
 });
 
+/**
+ * Entfernt einen Anbieter aus der XML-Datenbank.
+ * → XSLT kann keine XML-Daten löschen.
+ */
 app.post('/removeProvider', (req, res) => {
     const { plant, provider } = req.body;
 

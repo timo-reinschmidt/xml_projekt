@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-    <?xml-stylesheet type="text/xsl" href="../feature-04/feature-04.done.xsl"?>
-    <changes>
-        <action>Anbieter Faktor wurde aktualisiert</action>
-        <plant>Aarau</plant>
-        <provider>Elektro AG</provider>
-        <factor>2.5</factor>
-    </changes>

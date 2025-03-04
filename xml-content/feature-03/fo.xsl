@@ -29,7 +29,7 @@
                               padding-bottom="5pt">Price Stats
                     </fo:block>
                     <xsl:apply-templates
-                            select="document('../database/database.xml')/energie-data/energie-plant/plant"
+                            select="document('../database/database.xml')/energy-data/energy-plant/plant"
                     >
 
                     </xsl:apply-templates>

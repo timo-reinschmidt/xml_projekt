@@ -25,23 +25,30 @@
 
                     <div>
                         <p>
-                            <i>Let's create a printable energie statistics:
+                            <i>Hier können wir die Statistiken Exportieren:
                             </i>
                         </p>
                         <p>
-                            <a href="fo.xml" target="_blank">create FO</a>
-                            <small>(directly in browser with XSTL)</small>
+                            <a href="fo.xml" target="_blank">FO download</a>
+                            <small>(Direkt im Browser)</small>
                         </p>
                         <p>
-                            <a href="#" onclick="createPdf()">create PDF</a>
-                            <small>(create FO and render as PDF via web service)</small>
+                            <a href="#" onclick="createPdf()">PDF Download</a>
+                            <small>(Die Daten werden als PDF gerendert und heruntergeladen)</small>
+                                <!-- Dummy-Link für den PDF-Download -->
+                            <a id="dummyLink"></a>
                         </p>
-                        <!-- Dummy-Link for PDF-Download -->
-                        <a id="dummyLink"></a>
+                        <p>
+                            <a href="#" onclick="createCSV()">CSV Download</a>
+                            <small>(Die Daten werden als CSV gerendert und heruntergeladen)</small>
+                                <!-- Dummy-Link für den CSV-Download -->
+                            <a id="dummyLinkCSV"></a>
+                        </p>
+          
                     </div>
 
                 </div>
-                <!-- Javascript-Functions for FO-Transformation -->
+                <!-- Javascript-Funktionen für FO-Transformation -->
                 <script src="feature-03/fo-functions.js" type="text/javascript"></script>
             </body>
         </html>

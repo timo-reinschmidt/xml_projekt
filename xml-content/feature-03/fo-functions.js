@@ -9,10 +9,10 @@ function loadXMLDoc(filename) {
     return xhttp.responseXML;
 }
 
-async function createPdf() {
+async function createPdf(xmlLink, xslLink) {
     // xsl Transformation
-    let xml = loadXMLDoc('../fo.xml')
-    let xsl = loadXMLDoc('../feature-03/fo.xsl')
+    let xml = loadXMLDoc(xmlLink)
+    let xsl = loadXMLDoc(xslLink)
     xsltProcessor = new XSLTProcessor();
     xsltProcessor.importStylesheet(xsl);
     resultDocument = xsltProcessor.transformToFragment(xml, document);
@@ -37,10 +37,10 @@ async function createPdf() {
     }
 }
 
-async function createCSV() {
+async function createCSV(xmlLink, xslLink) {
     // xsl Transformation
-    let xml = loadXMLDoc('../fo.xml')
-    let xsl = loadXMLDoc('../feature-03/FOForCSV.xsl')
+    let xml = loadXMLDoc(xmlLink)
+    let xsl = loadXMLDoc(xslLink)
     xsltProcessor = new XSLTProcessor();
     xsltProcessor.importStylesheet(xsl);
     // Transformiertes Dokument

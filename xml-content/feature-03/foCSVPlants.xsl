@@ -5,7 +5,7 @@
     
     <xsl:template match="/">
         <!--  Titel -->
-        <xsl:text>Plant Name;Date;Price (CHF)&#10;</xsl:text>
+        <xsl:text>Plant Name;Datum;Preis (CHF)&#10;</xsl:text>
         
         <!-- Jede Plant aus der Datenbank auswäählen -->
         <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>

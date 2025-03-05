@@ -13,8 +13,8 @@
         <link rel="stylesheet" type="text/css" href="/theme.css"/>
       </head>
       <body>
-        <h1>Ergebnisse für <xsl:value-of select="calculatorResults/region"/></h1>
-        <p>Jahresverbrauch: <strong><xsl:value-of select="calculatorResults/verbrauch"/> kWh</strong></p>
+        <h1>Ihre Ergebnisse für die Region <xsl:value-of select="calculatorResults/region"/></h1>
+        <h2>Ihr Jahresverbrauch: <strong><xsl:value-of select="calculatorResults/verbrauch"/> kWh</strong></h2>
 
         <table border="1">
           <thead>

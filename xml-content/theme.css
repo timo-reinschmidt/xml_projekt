@@ -11,7 +11,7 @@ body {
 
     margin: 0;
     padding: 25px;
-    background-color: #68b4e6;
+    background-color: #2E7D32;
 }
 
 a {
@@ -132,3 +132,4 @@ th {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+

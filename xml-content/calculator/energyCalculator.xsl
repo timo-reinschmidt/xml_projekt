@@ -6,35 +6,39 @@
 
   <xsl:template match="calculator">
     <html>
-
       <head>
-        <title>Energieverbrauchsrechner</title>
-        <link rel="stylesheet" type="text/css" href="/theme.css"/>
+        <title>Energieverbrauchsrechner - Infinergy</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
       </head>
 
-      <body>
-        <h1>Energieverbrauchsrechner</h1>
+      <body class="w3-light-green w3-padding-large">
 
-        <!-- Eingabeformular -->
-        <form action="/energyCalculator/calculateCost" method="post">
-          <div>
-            <!-- Dropdown für Region -->
-            <label for="region">Region auswählen:</label>
-            <select id="region" name="region">
-              <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>
-            </select>
-          </div>
+        <div class="w3-container w3-white w3-card w3-round-large w3-padding-large" style="max-width: 600px; margin: auto;">
+          <h1 class="w3-center w3-text-green">⚡ Energieverbrauchsrechner</h1>
 
-          <div>
-            <!-- Eingabefeld für Verbrauch -->
-            <label for="verbrauch">Jahresverbrauch (kWh):</label>
-            <input type="number" id="verbrauch" name="verbrauch"/>
-          </div>
+          <!-- Eingabeformular -->
+          <form action="/energyCalculator/calculateCost" method="post" class="w3-container">
+            <div class="w3-section">
+              <!-- Dropdown für Region -->
+              <label for="region" class="w3-text-teal"><b>Region auswählen:</b></label>
+              <select id="region" name="region" class="w3-select w3-border w3-round">
+                <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>
+              </select>
+            </div>
 
-          <!-- Submit für Berechnen-->
-          <button type="submit">Berechnen</button>
+            <div class="w3-section">
+              <!-- Eingabefeld für Verbrauch -->
+              <label for="verbrauch" class="w3-text-teal"><b>Jahresverbrauch (kWh):</b></label>
+              <input type="number" id="verbrauch" name="verbrauch" class="w3-input w3-border w3-round"/>
+            </div>
 
-        </form>
+            <!-- Submit für Berechnen-->
+            <div class="w3-center">
+              <button type="submit" class="w3-button w3-green w3-round-large w3-hover-blue">Berechnen</button>
+            </div>
+          </form>
+        </div>
+
       </body>
     </html>
   </xsl:template>

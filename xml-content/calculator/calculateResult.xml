@@ -1,0 +1,19 @@
+<?xml version="1.0" ?> 
+<?xml-stylesheet type="text/xsl" href="calculateCostResult.xsl"?>
+<results><calculatorResults><region>Genf</region><verbrauch>5000</verbrauch>
+  <provider>
+    <name>StromPower AG</name>
+    <totalCost>29850.00</totalCost>
+  </provider>
+  <provider>
+    <name>KW Direkt GmbH</name>
+    <totalCost>3000.00</totalCost>
+  </provider>
+  <provider>
+    <name>Energie4Us</name>
+    <totalCost>17985.00</totalCost>
+  </provider>
+  <provider>
+    <name>Strom 'r' Us</name>
+    <totalCost>6618.00</totalCost>
+  </provider></calculatorResults></results>

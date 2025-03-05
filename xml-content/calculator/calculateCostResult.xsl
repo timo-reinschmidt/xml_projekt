@@ -25,6 +25,7 @@
           </thead>
           <tbody>
             <xsl:for-each select="calculatorResults/provider">
+              <xsl:sort select="totalCost" data-type="number" order="ascending"/>
               <tr>
                 <td><xsl:value-of select="name"/></td>
                 <td><xsl:value-of select="totalCost"/> CHF</td>

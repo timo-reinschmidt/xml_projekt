@@ -12,14 +12,14 @@
             <body>
 
                 <!-- title and nav  -->
-                <h1>INFINERGY PUBLIC</h1>
+                <h1>INFINERGY HAUSHALT</h1>
 
                 <small>
                     <a href="index.xml">Home</a>
                 </small>
                 <div class="content">
                    <p>
-                        <i>The following functions are for the public</i>
+                        <i>Folgende Funktionen stehen Ihnen Zur Verfügung</i>
                     </p>
                     <hr/>
 

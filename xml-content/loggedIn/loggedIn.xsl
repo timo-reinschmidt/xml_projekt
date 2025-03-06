@@ -12,13 +12,13 @@
             <body>
 
                 <!-- title and nav  -->
-                <h1>INFINERGY COOPERATE</h1>
+                <h1>INFINERGY ANBIETER</h1>
                 <small>
                     <a href="index.xml">Home</a>
                 </small>
                 <div class="content">
                     <p>
-                        <i>The following functions are for Cooperate Entities</i>
+                        <i>Folgende Funktionen stehen Ihnen Zur Verfügung</i>
                     </p>
                     <hr/>
 
@@ -29,7 +29,7 @@
                         </xsl:apply-templates>
                     </ul>
                     <hr></hr>
-               
+
                 </div>
 
             </body>

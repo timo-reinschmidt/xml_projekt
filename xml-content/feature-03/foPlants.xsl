@@ -15,21 +15,21 @@
             <fo:page-sequence master-reference="stats">
                 <fo:static-content flow-name="xsl-region-before">
                     <fo:block text-align="center" font-size="8pt">
-                        Energiewerke Mittelland - Price Stats
+                        Infinergy - Preis Statistiken
                         <fo:page-number/>
                     </fo:block>
                 </fo:static-content>
                 <fo:flow flow-name="xsl-region-body">
                     <fo:block font-size="19pt" font-family="sans-serif" line-height="24pt" space-after.optimum="20pt"
                               color="black" text-align="left" padding-top="5pt"
-                              padding-bottom="5pt">Energiewerke Mittelland
+                              padding-bottom="5pt">Infinergy
                     </fo:block>
                     <fo:block font-size="15pt" font-family="sans-serif" line-height="19pt" space-after.optimum="20pt"
                               background-color="black" color="white" text-align="center" padding-top="5pt"
-                              padding-bottom="5pt">Price Stats
+                              padding-bottom="5pt">Preis Statistiken
                     </fo:block>
                     <xsl:apply-templates
-                            select="document('../database/database.xml')/energie-data/energie-plant/plant"
+                            select="document('../database/database.xml')/energy-data/energy-plant/plant"
                     >
 
                     </xsl:apply-templates>

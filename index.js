@@ -59,6 +59,7 @@ app.post('/convertToPdf', async (req, res) => {
         credentials: "same-origin",
         body: req.body,
     });
+    
     const responseText = await (await response.blob()).arrayBuffer()
     const buffer = Buffer.from(responseText)
     fs.writeFileSync(path.resolve('temp.pdf'), buffer)

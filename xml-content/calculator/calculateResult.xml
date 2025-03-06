@@ -1,23 +1,23 @@
 <?xml version="1.0" ?> 
 <?xml-stylesheet type="text/xsl" href="calculateCostResult.xsl"?>
-<results><calculatorResults><region>Aarau</region><verbrauch>3000</verbrauch>
+<results><calculatorResults><region>Aarau</region><verbrauch>4000</verbrauch>
   <provider>
     <name>StromPower AG</name>
-    <totalCost>17850.00</totalCost>
+    <totalCost>23850.00</totalCost>
   </provider>
   <provider>
     <name>KW Direkt GmbH</name>
-    <totalCost>1800.00</totalCost>
+    <totalCost>2400.00</totalCost>
   </provider>
   <provider>
     <name>Energie4Us</name>
-    <totalCost>10785.00</totalCost>
+    <totalCost>14385.00</totalCost>
   </provider>
   <provider>
     <name>FreeStrom4All</name>
-    <totalCost>5084.00</totalCost>
+    <totalCost>6764.00</totalCost>
   </provider>
   <provider>
     <name>Elektro AG</name>
-    <totalCost>9000.00</totalCost>
+    <totalCost>12000.00</totalCost>
   </provider></calculatorResults></results>

@@ -54,7 +54,6 @@ router.post('/calculateCost', (req, res) => {
 
 // Datei speichern in calculateResult.xml
   const resultPath = path.resolve('xml-content/calculator/calculateResult.xml');
-  console.log("XML-Inhalt vor dem Speichern:\n", xmlResult);
   fs.writeFileSync(resultPath, xmlResult, 'utf-8');
   res.redirect('/calculator/calculateResult.xml');
 });

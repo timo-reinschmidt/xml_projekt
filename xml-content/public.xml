@@ -6,4 +6,9 @@
         <link>feature-02.xml</link>
         <index>0</index>
     </item>
+    <item>
+        <text>Feature: Energieverbrauchsrechner</text>
+        <link>calculator.xml</link>
+        <index>1</index>
+    </item>
 </menu>

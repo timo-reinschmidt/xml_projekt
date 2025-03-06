@@ -357,6 +357,11 @@ function validateDatabase(xmlDocDatabase) {
     return xmlDocDatabase.validate(xmlDocDatabaseXsd)
 }
 
+// Einbindung des Energieverbrauchsrechners
+const energyCalculatorRouter = require('./xml-content/calculator/energyCalculator');
+app.use('/energyCalculator', energyCalculatorRouter);
+app.use('/calculator', express.static(path.join(__dirname, 'xml-content/calculator')));
+
 app.listen(3000, () => {
     console.log('listen on port', 3000)
 })

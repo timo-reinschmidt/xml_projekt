@@ -1,71 +1,61 @@
 <?xml version="1.0" ?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml">
-
     <xsl:output doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
-
+      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
     <xsl:template match="menu">
         <html>
             <head>
-                <title>INFINERGY</title>
+                <title>INFINERGY PORTAL</title>
+                <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css"/>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
+
             </head>
             <body>
-
-                <!-- title and nav  -->
-                <h1>INFINERGY</h1>
-
-                <div class="content">
-
-                    <p>
-                        <i>Welcome to INFINERGY</i>
-                        <br/><br/>
-                        <i>the new Informationplattform for Energy and Gas</i>
-                    </p>
+                <div class="w3-container w3-padding-16 w3-center">
+                    <h1>INFINERGY PORTAL</h1>
+                </div>
+                <div class="w3-bar w3-padding w3-large w3-center">
+                    <a href="index.xml" class="w3-bar-item w3-button ">Home</a>
+                    <a href="about.xml" class="w3-bar-item w3-button ">Über uns</a>
+                </div>
+                <div class="w3-container w3-padding">
+                    <h2 class="w3-center "><i>Willkommen auf der Infinergy Informationsplattform</i></h2>
                     <hr/>
-                     <div class="content">
-                    <form action="/checkLogin" method="post">
-                        <div>
-                            <label for="username">Username: </label>
-                            <input type="text" name="username" id="username-input" placeholder="username"/>
+                    <div class="w3-container w3-padding">
+                        <div class="w3-row-padding w3-margin-top">
+                            <div class="w3-half">
+                                <div class="w3-card  w3-padding w3-margin">
+                                    <h2 class="w3-center">Anbieter Portal</h2>
+                                    <form action="/checkLogin" method="post">
+                                        <label>Username:</label>
+                                        <input class="w3-input w3-border" type="text" name="username" placeholder="username"/>
+                                        <label>Password:</label>
+                                        <input class="w3-input w3-border" type="password" name="password" placeholder="******"/>
+                                        <button class="w3-button w3-khaki ">Login</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="w3-half">
+                                <div class="w3-card w3-padding w3-margin">
+                                    <h2 class="w3-center ">Haushaltportal</h2>
+                                    <p class="w3-center">Zugang zu Informationen wie Preisvergleich und Statistik</p>
+                                    <a href="public.xml" class="w3-button w3-khaki ">Mehr erfahren</a>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <label for="password">Password: </label>
-                            <input type="text" name="password" id="password-input" placeholder="******"/>
-                        </div>
-                        <button type="submit">Insert</button>
-                    </form>
                     </div>
-                    <!-- render menu nav  -->
-                
-                        <xsl:apply-templates select="item">
-                            <xsl:sort select="index" data-type="text" order="ascending"/>
-                        </xsl:apply-templates>
-                
+                    <hr/>
                 </div>
-                <div class="content">
-                    <a href="database/database.xml" target="_blank">
-                    show Database
-                    </a>
-                </div>
-
             </body>
         </html>
     </xsl:template>
 
-    <!-- single menu item  -->
     <xsl:template match="item">
-        <div class="content">
-        <li>
-            <a>
-                <xsl:attribute name="href">
-                    <xsl:value-of select="link"/>
-                </xsl:attribute>
+        <li class="w3-padding w3-hover-light-gray">
+            <a class="w3-text-green" href="{link}">
                 <xsl:value-of select="text"/>
             </a>
         </li>
-        </div>
     </xsl:template>
-
 </xsl:stylesheet>

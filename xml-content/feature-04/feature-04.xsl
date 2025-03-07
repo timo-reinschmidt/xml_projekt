@@ -106,20 +106,20 @@
 
                         <form action="/updateProviderFactor" method="post">
                             <div>
-                                <label for="plant">Plant wählen:</label>
+                                <label for="plant">Plant wählen:</label><br/>
                                 <select name="plant" id="plant" onchange="updateProviders()">
                                     <option value="" disabled="disabled" selected="selected">Bitte wählen</option>
                                     <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>
                                 </select>
                             </div>
                             <div>
-                                <label for="provider">Anbieter wählen:</label>
+                                <label for="provider">Anbieter wählen:</label><br/>
                                 <select name="provider" id="provider">
                                     <option value="" disabled="disabled" selected="selected">Bitte Plant zuerest wählen</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="factor-update">Neuer Faktor:</label>
+                                <label for="factor-update">Neuer Faktor:</label><br/>
                                 <input type="number" name="factor" id="factor-update" step="0.1" placeholder="Faktor eingeben" required="required"/>
                             </div>
                             <button type="submit">Faktor aktualisieren</button>
@@ -129,23 +129,23 @@
 
                         <form action="/addProvider" method="post">
                             <div>
-                                <label for="provider-name">Anbieter Name</label>
+                                <label for="provider-name">Anbieter Name</label><br/>
                                 <input type="text" name="provider-name" id="provider-name" placeholder="Anbieter Name" required="required"/>
                             </div>
                             <div>
-                                <label for="base-fee">Grundgebühr (CHF)</label>
+                                <label for="base-fee">Grundgebühr (CHF)</label><br/>
                                 <input type="number" name="base-fee" id="base-fee" placeholder="Min: 0 / Max: 100" required="required"/>
                             </div>
                             <div>
-                                <label for="threshold">Schwelle (kW)</label>
+                                <label for="threshold">Schwelle (kW)</label><br/>
                                 <input type="number" name="threshold" id="threshold" placeholder="Min: 0 / Max: 1000" required="required"/>
                             </div>
                             <div>
-                                <label for="factor-new">Faktor</label>
+                                <label for="factor-new">Faktor</label><br/>
                                 <input type="number" name="factor" id="factor-new" step="0.1" placeholder="Min: 0.1 / Max: 10" required="required"/>
                             </div>
                             <div>
-                                <label for="plant">Plant(s) zuweisen:</label>
+                                <label for="plant">Plant(s) zuweisen:</label><br/>
                                 <div class="dropdown">
                                     <div class="dropdown-content">
                                         <xsl:for-each select="document('../database/database.xml')/energy-data/energy-plant/plant">
@@ -166,14 +166,14 @@
 
                         <form action="/removeProvider" method="post">
                             <div>
-                                <label for="remove-plant">Plant wählen:</label>
+                                <label for="remove-plant">Plant wählen:</label><br/>
                                 <select name="plant" id="remove-plant" onchange="updateProvidersForRemoval()">
                                     <option value="" disabled="disabled" selected="selected">Bitte wählen</option>
                                     <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>
                                 </select>
                             </div>
                             <div>
-                                <label for="remove-provider">Anbieter wählen:</label>
+                                <label for="remove-provider">Anbieter wählen:</label><br/>
                                 <select name="provider" id="remove-provider">
                                     <option value="" disabled="disabled" selected="selected">Bitte Plant zuerst wählen</option>
                                 </select>

@@ -29,7 +29,7 @@
                     </p>
 
                     <p>
-                        Authoren:
+                        Autoren:
                         <xsl:value-of select="authors"/>
                   
                     </p>

@@ -1,27 +1,23 @@
 <?xml version="1.0" ?> 
 <?xml-stylesheet type="text/xsl" href="calculateCostResult.xsl"?>
-<results><calculatorResults><region>Luzern</region><verbrauch>3000</verbrauch>
+<results><calculatorResults><region>Zürich</region><verbrauch>1000</verbrauch>
   <provider>
     <name>StromPower AG</name>
-    <totalCost>17850.00</totalCost>
+    <totalCost>5850.00</totalCost>
   </provider>
   <provider>
-    <name>KW Direkt GmbH</name>
-    <totalCost>1800.00</totalCost>
+    <name>Energie4Us</name>
+    <totalCost>3585.00</totalCost>
   </provider>
   <provider>
     <name>FreeStrom4All</name>
-    <totalCost>5084.00</totalCost>
+    <totalCost>1724.00</totalCost>
   </provider>
   <provider>
     <name>Strom 'r' Us</name>
-    <totalCost>3978.00</totalCost>
+    <totalCost>1338.00</totalCost>
   </provider>
   <provider>
     <name>Elektro AG</name>
-    <totalCost>10800.00</totalCost>
-  </provider>
-  <provider>
-    <name>EWZ</name>
-    <totalCost>1770.00</totalCost>
+    <totalCost>3600.00</totalCost>
   </provider></calculatorResults></results>

@@ -9,15 +9,16 @@
     <xsl:template match="feature">
         <html>
             <head>
-                <title>Energiewerke Mittelland Reloaded</title>
+                <title>INFINERGY Daten</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>
 
                 <!-- Title and nav  -->
 
+                <h1>Datenexport und Statistiken</h1>
                 <small>
-                    <a href="loggedIn.xml">zurück</a>
+                    <a href="loggedIn.xml">Zurück</a>
                 </small>
 
                 <div class="content">

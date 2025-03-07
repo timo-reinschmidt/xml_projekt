@@ -6,7 +6,7 @@
 <xsl:template match="menu">
         <html>
             <head>
-                <title>INFINERGY COOPERATE</title>
+                <title>INFINERGY ANBIETER</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>

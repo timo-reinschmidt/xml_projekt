@@ -7,14 +7,14 @@
     <xsl:template match="about">
         <html>
             <head>
-                <title>Energiewerke Mittelland Reloaded</title>
+                <title>INFINERGY Über Uns</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>
 
                 <h1>INFINERGY</h1>
                 <small>
-                    <a href="index.xml">Home</a>
+                    <a href="index.xml">Startseite</a>
                 </small>
 
                 <div class="content">
@@ -24,12 +24,12 @@
                         <xsl:value-of select="version"/>
                     </p>
                     <p>
-                        Date:
+                        Datum:
                         <xsl:value-of select="date"/>
                     </p>
 
                     <p>
-                        Authors:
+                        Authoren:
                         <xsl:value-of select="authors"/>
                   
                     </p>

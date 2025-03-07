@@ -18,13 +18,13 @@
     </xs:element>
 
     <xs:simpleType name="userName">
-        <xs:restriciton base="xs:string">
+        <xs:restriction base="xs:string">
             <xs:maxLength value="30"/>
         </xs:restriction>
     </xs:simpleType>
 
         <xs:simpleType name="password">
-        <xs:restriciton base="xs:string">
+        <xs:restriction base="xs:string">
             <xs:minInclusive value="0"/>
             <xs:MaxInclusive value="unbounded"/>
         </xs:restriction>

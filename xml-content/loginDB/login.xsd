@@ -17,18 +17,23 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:simpleType name="userName">
-        <xs:restriction base="xs:string">
-            <xs:maxLength value="30"/>
-        </xs:restriction>
-    </xs:simpleType>
+    <xs:element name="userName">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="30"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
 
-        <xs:simpleType name="password">
-        <xs:restriction base="xs:string">
-            <xs:minInclusive value="0"/>
-            <xs:MaxInclusive value="unbounded"/>
-        </xs:restriction>
-    </xs:simpleType>
+    <xs:element name="password">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="30"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
 
 
 </xs:schema>

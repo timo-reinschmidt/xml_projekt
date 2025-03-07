@@ -147,7 +147,6 @@
                             <div>
                                 <label for="plant">Plant(s) zuweisen:</label>
                                 <div class="dropdown">
-                                    <button class="dropbtn">Auswahl</button>
                                     <div class="dropdown-content">
                                         <xsl:for-each select="document('../database/database.xml')/energy-data/energy-plant/plant">
                                             <label>

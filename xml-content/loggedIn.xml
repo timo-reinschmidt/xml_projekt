@@ -1,19 +1,14 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet type="text/xsl" href="loggedIn/loggedIn.xsl"?>
 <menu>
- 
-  <item>
-        <text>Feature 1: cross-document XSLT</text>
-        <link>feature-01.xml</link>
-        <index>4</index>
-    </item>
+
     <item>
-        <text>Feature 3: FO and PDF</text>
+        <text>Statistiken und Exportdokumente</text>
         <link>feature-03.xml</link>
         <index>5</index>
     </item>
     <item>
-        <text>Feature 4: Manage your Plant and Provider Data</text>
+        <text>Anlagen und Anbieterdaten verwalten</text>
         <link>feature-04.xml</link>
         <index>6</index>
     </item>

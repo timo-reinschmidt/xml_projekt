@@ -2,12 +2,12 @@
 <?xml-stylesheet type="text/xsl" href="public/public.xsl"?>
 <menu>
     <item>
-        <text>Feature 2: data-driven SVG</text>
+        <text>Stromanbieter-Vergleich</text>
         <link>feature-02.xml</link>
         <index>0</index>
     </item>
     <item>
-        <text>Feature: Energieverbrauchsrechner</text>
+        <text>Energieverbrauchsrechner</text>
         <link>calculator.xml</link>
         <index>1</index>
     </item>

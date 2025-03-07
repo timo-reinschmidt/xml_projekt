@@ -6,7 +6,7 @@
 <xsl:template match="menu">
         <html>
             <head>
-                <title>INFINERGY PUBLIC</title>
+                <title>INFINERGY Öffentlich</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>
@@ -15,7 +15,7 @@
                 <h1>INFINERGY HAUSHALT</h1>
 
                 <small>
-                    <a href="index.xml">Home</a>
+                    <a href="index.xml">Startseite</a>
                 </small>
                 <div class="content">
                    <p>

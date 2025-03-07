@@ -9,7 +9,7 @@
     <xsl:template match="feature">
         <html>
             <head>
-                <title>Energiewerke Mittelland Reloaded</title>
+                <title>Statistiken Herunterladen</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>
@@ -18,7 +18,7 @@
 
                 <h1>Feature #03</h1>
                 <small>
-                    <a href="loggedIn.xml">Back</a>
+                    <a href="loggedIn.xml">Zurück</a>
                 </small>
 
                 <div class="content">
@@ -30,7 +30,7 @@
                         </p>
                         <div>
                         <p>
-                            <a href="foPlants.xml" target="_blank">FO download</a>
+                            <a href="foPlants.xml" target="_blank">FO Download</a>
                             <small>(Direkt im Browser)</small>
                         </p>
                         <p>
@@ -52,7 +52,7 @@
                         </p>
                         <div>
                         <p>
-                            <a href="foProviders.xml" target="_blank">FO download</a>
+                            <a href="foProviders.xml" target="_blank">FO Download</a>
                             <small>(Direkt im Browser)</small>
                         </p>
                         <p>

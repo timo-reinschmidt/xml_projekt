@@ -32,12 +32,12 @@
                     </fo:block>
 
                     <fo:table space-after.optimum="20pt" width="100%" font-size="11pt">
+                        <fo:table-column column-width="14%"/>
                         <fo:table-column column-width="20%"/>
                         <fo:table-column column-width="20%"/>
-                        <fo:table-column column-width="15%"/>
-                        <fo:table-column column-width="15%"/>
-                        <fo:table-column column-width="15%"/>
-                        <fo:table-column column-width="15%"/>
+                        <fo:table-column column-width="10%"/>
+                        <fo:table-column column-width="18%"/>
+                        <fo:table-column column-width="18%"/>
 
                         <fo:table-header>
                             <fo:table-row background-color="black" color="white">
@@ -54,7 +54,7 @@
                                     <fo:block font-weight="bold" text-align="left">Faktor</fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell padding="5pt">
-                                    <fo:block font-weight="bold" text-align="left">Tariff (Threshold)</fo:block>
+                                    <fo:block font-weight="bold" text-align="left">Schwelle (kW)</fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell padding="5pt">
                                     <fo:block font-weight="bold" text-align="left">Kalkulierter Preis (CHF)</fo:block>
@@ -71,7 +71,7 @@
         </fo:root>
     </xsl:template>
 
-    <!-- Plant mit Kanton (Name) auslesen -->
+    <!-- Plant mit Variable Kanton (Name) auslesen -->
     <xsl:template match="plant">
         <xsl:variable name="kanton" select="name"/>
         <xsl:apply-templates select="providers/provider">
@@ -79,7 +79,7 @@
         </xsl:apply-templates>
     </xsl:template>
 
-    <!-- Anbieter-Daten mit Kanton ausgeben  -->
+    <!-- Anbieter-Daten mit Variable Kanton ausgeben  -->
     <xsl:template match="provider">
         <xsl:param name="kanton"/>
         <fo:table-row>

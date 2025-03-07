@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="public/public.xsl"?>
 <menu>
     <item>
-        <text>Stromanbieter-Vergleich</text>
+        <text>Stromanbietervergleich</text>
         <link>feature-02.xml</link>
         <index>0</index>
     </item>

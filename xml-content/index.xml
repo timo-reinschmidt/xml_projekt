@@ -5,13 +5,13 @@
       <item>
         <text>public</text>
         <link>public.xml</link>
-        <index>1</index>
+        <index>0</index>
     </item>
   
     <item>
         <text>About</text>
         <link>about.xml</link>
-        <index>7</index>
+        <index>1</index>
     </item>
 </menu>
 

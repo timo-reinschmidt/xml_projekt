@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <?xml-stylesheet type="text/xsl" href="../feature-04/feature-04.done.xsl"?>
+    <changes>
+        <action>Plant Preis wurde angepasst</action>
+        <plant>Luzern</plant>
+        <provider>N/A</provider>
+        <date>2025-03-07</date>
+    <price>3.4</price>
+    </changes>

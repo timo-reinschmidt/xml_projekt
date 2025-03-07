@@ -14,7 +14,7 @@
                 <!-- title and nav  -->
                 <h1>INFINERGY ANBIETER</h1>
                 <small>
-                    <a href="index.xml">Home</a>
+                    <a href="index.xml">Starseite</a>
                 </small>
                 <div class="content">
                     <p>

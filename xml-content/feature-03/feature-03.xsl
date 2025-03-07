@@ -16,54 +16,53 @@
 
                 <!-- Title and nav  -->
 
-                <h1>Feature #03</h1>
                 <small>
-                    <a href="loggedIn.xml">Back</a>
+                    <a href="loggedIn.xml">zurück</a>
                 </small>
 
                 <div class="content">
 
                     <div>
                         <p>
-                            <i>Hier können wir die Statistiken der Einzelnen Plants Exportieren:
+                            <i>Hier können Sie  die Statistiken der Einzelnen Plants Exportieren:
                             </i>
                         </p>
                         <div>
                         <p>
-                            <a href="foPlants.xml" target="_blank">FO download</a>
+                            <a href="foPlants.xml" target="_blank">FO herunterladen</a>
                             <small>(Direkt im Browser)</small>
                         </p>
                         <p>
-                            <a href="#" onclick="createPdf('../foPlants.xml','../feature-03/foPlants.xsl')">PDF Download</a>
-                            <small>(Die Daten werden als PDF gerendert und heruntergeladen)</small>
+                            <a href="#" onclick="createPdf('../foPlants.xml','../feature-03/foPlants.xsl')">PDF herunterladen</a>
+                            <small>(Daten als PDF heruntergeladen)</small>
                                 <!-- Dummy-Link für den PDF-Download -->
                             <a id="dummyLink"></a>
                         </p>
                         <p>
-                            <a href="#" onclick="createCSV('../foPlants.xml','../feature-03/foCSVPlants.xsl')">CSV Download</a>
-                            <small>(Die Daten werden als CSV gerendert und heruntergeladen)</small>
+                            <a href="#" onclick="createCSV('../foPlants.xml','../feature-03/foCSVPlants.xsl')">CSV herunterladen</a>
+                            <small>(Daten  als CSV heruntergeladen)</small>
                                 <!-- Dummy-Link für den CSV-Download -->
                             <a id="dummyLinkCSV"></a>
                         </p> <br/>
                         </div>
                            <p>
-                            <i>Hier können wir die Statistiken der Einzelnen Stromanbieter Exportieren:
+                            <i>Hier können Sie die Statistiken der Einzelnen Stromanbieter Exportieren:
                             </i>
                         </p>
                         <div>
                         <p>
-                            <a href="foProviders.xml" target="_blank">FO download</a>
+                            <a href="foProviders.xml" target="_blank">FO herunterladen</a>
                             <small>(Direkt im Browser)</small>
                         </p>
                         <p>
-                            <a href="#" onclick="createPdf('../foProviders.xml','../feature-03/foProviders.xsl')">PDF Download</a>
-                            <small>(Die Daten werden als PDF gerendert und heruntergeladen)</small>
+                            <a href="#" onclick="createPdf('../foProviders.xml','../feature-03/foProviders.xsl')">PDF herunterladen</a>
+                            <small>(Daten als PDF heruntergeladen)</small>
                                 <!-- Dummy-Link für den PDF-Download -->
                             <a id="dummyLink"></a>
                         </p>
                         <p>
-                            <a href="#" onclick="createCSV('../foProviders.xml','../feature-03/foCSVProviders.xsl')">CSV Download</a>
-                            <small>(Die Daten werden als CSV gerendert und heruntergeladen)</small>
+                            <a href="#" onclick="createCSV('../foProviders.xml','../feature-03/foCSVProviders.xsl')">CSV herunterladen</a>
+                            <small>(Daten  als CSV heruntergeladen)</small>
                                 <!-- Dummy-Link für den CSV-Download -->
                             <a id="dummyLinkCSV"></a>
                         </p>

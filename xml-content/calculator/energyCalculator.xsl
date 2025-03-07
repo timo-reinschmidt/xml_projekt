@@ -7,14 +7,16 @@
   <xsl:template match="calculator">
     <html>
       <head>
-        <title>Energieverbrauchsrechner - Infinergy</title>
+        <title>Energieverbrauchsrechner</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+        <link rel="stylesheet" type="text/css" href="../theme.css"/>
+
       </head>
 
-      <body class="w3-light-green w3-padding-large">
+      <body class="w3-padding-large">
 
         <div class="w3-container w3-white w3-card w3-round-large w3-padding-large" style="max-width: 600px; margin: auto;">
-          <h1 class="w3-center w3-text-green">⚡ Energieverbrauchsrechner</h1>
+          <h1 class="w3-center">⚡ Energieverbrauchsrechner</h1>
 
           <!-- Eingabeformular -->
           <form action="/energyCalculator/calculateCost" method="post" class="w3-container">
@@ -34,9 +36,13 @@
 
             <!-- Submit für Berechnen-->
             <div class="w3-center">
-              <button type="submit" class="w3-button w3-green w3-round-large w3-hover-blue">Berechnen</button>
+              <button type="submit" class="w3-button w3-teal w3-round-large ">Berechnen</button>
             </div>
           </form>
+          <!-- Zurück-Button -->
+          <div class="w3-center w3-margin-top">
+            <a href="public.xml" class="w3-button w3-teal w3-round-large ">Zurück</a>
+          </div>
         </div>
 
       </body>

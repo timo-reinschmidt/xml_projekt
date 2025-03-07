@@ -12,20 +12,22 @@
         <title>Berechnungsergebnisse - Infinergy</title>
         <!-- W3.CSS einbinden -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+        <link rel="stylesheet" type="text/css" href="../theme.css"/>
+
       </head>
-      <body class="w3-light-green w3-padding-large">
+      <body class="w3-padding-large">
 
         <div class="w3-container w3-white w3-card w3-round-large w3-padding-large" style="max-width: 800px; margin: auto;">
-          <h1 class="w3-center w3-text-green">🌱 Infinergy - Ihre Berechnungsergebnisse</h1>
-          <h2 class="w3-center w3-text-blue">
+          <h1 class="w3-center ">🌱 Infinergy - Ihre Berechnungsergebnisse</h1>
+          <h2 class="w3-center ">
             Ihre Region: <xsl:value-of select="calculatorResults/region"/>
           </h2>
-          <h3 class="w3-center w3-text-teal">
+          <h3 class="w3-center">
             Ihr Jahresverbrauch: <strong><xsl:value-of select="calculatorResults/verbrauch"/> kWh</strong>
           </h3>
 
           <table class="w3-table w3-bordered w3-striped w3-hoverable w3-white">
-            <thead class="w3-green">
+            <thead class="w3-teal">
               <tr>
                 <th>Anbieter</th>
                 <th>Gesamtkosten (CHF)</th>
@@ -44,7 +46,7 @@
 
           <br/>
           <div class="w3-center">
-            <a href="../calculator.xml" class="w3-button w3-green w3-round-large w3-hover-blue ">Neue Berechnung starten</a>
+            <a href="../calculator.xml" class="w3-button w3-teal w3-round-large ">Neue Berechnung starten</a>
           </div>
         </div>
 

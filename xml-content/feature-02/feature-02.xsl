@@ -19,7 +19,7 @@
                 <header>
                     <h1 class="w3-container w3-text-deep-purple">Aktuelle Preise in Ihrer Region</h1>
                     <nav class="w3-bar w3-text-deep-purple w3-padding">
-                        <a href="public.xml" class="w3-bar-item w3-button">Zurück zur Gesamtansicht</a>
+                        <a href="public.xml" class="w3-bar-item w3-button">Zurück</a>
                         <!-- Bestehende Energiewerke der XML-Datenbank werden für die Abbildung der Navigationsleiste verwendet auf Basis des
                         template match="plant".
                         Dadurch soll sichergestellt werden, dass jede Überschrift eine eigene Verlinkung bekommt und somit der User schneller

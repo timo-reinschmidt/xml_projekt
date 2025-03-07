@@ -2,12 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="loggedIn/loggedIn.xsl"?>
 <menu>
  
-  <item>
-        <text>Feature 1: cross-document XSLT</text>
-        <link>feature-01.xml</link>
-        <index>4</index>
-    </item>
-    <item>
+     <item>
         <text>Feature 3: FO and PDF</text>
         <link>feature-03.xml</link>
         <index>5</index>

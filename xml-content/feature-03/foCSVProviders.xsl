@@ -5,7 +5,7 @@
     
     <xsl:template match="/">
         <!--  Titel -->
-        <xsl:text>Kanton;Anbieter Name;Grundkosten (CHF); Faktor; Tariff (Threshold); Kalkulierter Preis (CHF)&#10;</xsl:text>
+        <xsl:text>Kanton;Anbieter Name;Grundkosten (CHF); Faktor; Schwelle (kW); Kalkulierter Preis (CHF)&#10;</xsl:text>
         
         <!-- Jede Plant aus der Datenbank auswählen -->
         <xsl:apply-templates select="document('../database/database.xml')/energy-data/energy-plant/plant"/>

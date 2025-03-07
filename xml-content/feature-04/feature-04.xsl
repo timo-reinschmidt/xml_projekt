@@ -15,14 +15,14 @@
             </head>
             <body>
 
-                <h1>Feature #04</h1>
+                <h1>Verwaltungscockpit</h1>
                 <small>
                     <a href="loggedIn.xml">Zurück</a>
                 </small>
 
                 <div class="content">
                     <div>
-                        <h2>Ihr Portal für Preis Anpassungen:</h2>
+                        <h2>Ihr Portal für Preisanpassungen:</h2>
 
                         <form action="/updateData" method="post">
                             <div>
@@ -46,7 +46,7 @@
 
                         <hr/>
 
-                        <h3>Strom Anbieter Übersicht</h3>
+                        <h3>Übersicht der Stromanbieter</h3>
 
                         <table border="1">
                             <thead>
@@ -102,7 +102,7 @@
                             </tbody>
                         </table>
 
-                        <h3>Strom Anbieter Faktor Aktualisieren</h3>
+                        <h3>Stromanbieterfaktor aktualisieren</h3>
 
                         <form action="/updateProviderFactor" method="post">
                             <div>
@@ -122,10 +122,10 @@
                                 <label for="factor-update">Neuer Faktor:</label>
                                 <input type="number" name="factor" id="factor-update" step="0.1" placeholder="Faktor eingeben" required="required"/>
                             </div>
-                            <button type="submit">Faktor Aktualisieren</button>
+                            <button type="submit">Faktor aktualisieren</button>
                         </form>
 
-                        <h3>Neuen Strom Anbieter hinzufügen</h3>
+                        <h3>Neuen Stromanbieter hinzufügen</h3>
 
                         <form action="/addProvider" method="post">
                             <div>
@@ -158,11 +158,11 @@
                                 </div>
                             </div>
                             <div class="button-group">
-                                <button type="submit">Anbieter Hinzufügen</button>
+                                <button type="submit">Anbieter hinzufügen</button>
                             </div>
                         </form>
 
-                        <h3>Strom Anbieter aus Plant entfernen</h3>
+                        <h3>Stromanbieter aus Plant entfernen</h3>
 
                         <form action="/removeProvider" method="post">
                             <div>
@@ -178,7 +178,7 @@
                                     <option value="" disabled="disabled" selected="selected">Bitte Plant zuerst wählen</option>
                                 </select>
                             </div>
-                            <button type="submit">Anbieter Entfernen</button>
+                            <button type="submit">Anbieter entfernen</button>
                         </form>
                     </div>
                 </div>

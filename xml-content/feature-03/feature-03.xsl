@@ -24,7 +24,7 @@
 
                     <div>
                         <p>
-                            <i>Hier können Sie  die Statistiken der Einzelnen Plants Exportieren:
+                            <i>Hier können Sie  die Statistiken der einzelnen Plants exportieren:
                             </i>
                         </p>
                         <div>
@@ -46,7 +46,7 @@
                         </p> <br/>
                         </div>
                            <p>
-                            <i>Hier können Sie die Statistiken der Einzelnen Stromanbieter Exportieren:
+                            <i>Hier können Sie die Statistiken der einzelnen Stromanbieter exportieren:
                             </i>
                         </p>
                         <div>

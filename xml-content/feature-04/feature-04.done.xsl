@@ -9,7 +9,7 @@
     <xsl:template match="/">
         <html>
             <head>
-                <title>Änderung bestätigt</title>
+                <title>Änderungen bestätigt</title>
                 <link rel="stylesheet" type="text/css" href="../theme.css"/>
             </head>
             <body>

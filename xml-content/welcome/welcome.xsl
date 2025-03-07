@@ -24,7 +24,7 @@
                         <div class="w3-row-padding w3-margin-top">
                             <div class="w3-half">
                                 <div class="w3-card  w3-padding w3-margin">
-                                    <h2 class="w3-center">Anbieter Portal</h2>
+                                    <h2 class="w3-center">Portal für Anbieter</h2>
                                     <form action="/checkLogin" method="post">
                                         <label>Benutzername:</label>
                                         <input class="w3-input w3-border" type="text" name="username" placeholder="Benutzername"/>
@@ -37,7 +37,7 @@
                             <div class="w3-half">
                                 <div class="w3-card w3-padding w3-margin">
                                     <h2 class="w3-center ">Haushaltsportal</h2>
-                                    <p class="w3-center">Zugang zu Informationen wie Preisvergleich und Statistik</p>
+                                    <p class="w3-center">Zugang zu Informationen wie Preisvergleichen und Statistiken</p>
                                     <a href="public.xml" class="w3-button w3-khaki ">Mehr erfahren</a>
                                 </div>
                             </div>
